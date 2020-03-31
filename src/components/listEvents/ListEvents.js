@@ -1,24 +1,38 @@
-import React,{ useState,useEffect } from 'react';
-import Header from '../header/Header';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import Header from "../header/Header";
+import axios from "axios";
+import Event from '../event/Event';
+import SearchEvent from "../searchEvent/SearchEvent";
 
 const ListEvents = () => {
+  const [eventList, setEventList] = useState([]);
 
-    const [eventList,setEventList]=useState([]);
-    
-    const getEvents = async ()=>{
-        const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
-        const url= `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES`;
-        const response = await axios(url);
-        setEventList(response.data._embedded.events);  
-    }
+  const getEvents = async () => {
+    const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
+    const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES`;
+    const response = await axios(url);
+    setEventList(response.data._embedded.events);
+  };
+  useEffect(() => {
+    getEvents();
+  }, [eventList]);
 
 
-    return ( 
-        <Header />
 
-     );
-}
- 
+
+  return(
+      <>
+      <Header />
+      <SearchEvent />
+      {eventList.map((event) =>(
+          <Event 
+          key={event.id}
+          event={event}
+          />
+      ))}
+
+  )
+     </>
+  )};
+
 export default ListEvents;
