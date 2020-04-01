@@ -1,20 +1,28 @@
 import React, {  useState } from 'react';
-const SearchEvent = () => {
+const SearchEvent = ({ setKeyword }) => {
 
-    const [inputValue,setInputValues] = useState()
+    const [inputValue,setInputValues] = useState("")
 
     const handleChange = (e) =>{
     setInputValues(e.target.value)
     }
 
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        setKeyword(inputValue);
+    }
+
     return (
-        <form>
+        <form
+        onSubmit = {handleSubmit}
+        >
             <input
-            type='text'
+            type="text"
+            name="keyword"
             value={inputValue}
             onChange={handleChange}
             ></input>
-            <button>Go!!</button>
+           <input type="submit" value="Submit" />
         </form>
       );
 }
