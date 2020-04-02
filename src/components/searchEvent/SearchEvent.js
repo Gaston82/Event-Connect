@@ -1,4 +1,6 @@
 import React, {  useState } from 'react';
+import './SearchEvent.scss';
+
 const SearchEvent = ({ setKeyword }) => {
 
     const [inputValue,setInputValues] = useState("")
@@ -21,8 +23,13 @@ const SearchEvent = ({ setKeyword }) => {
             name="keyword"
             value={inputValue}
             onChange={handleChange}
+            placeholder="evento"
             ></input>
-           <input type="submit" value="Submit" />
+           <button
+            type="submit"
+             value="Submit">
+            GO!!
+           </button>
         </form>
       );
 }
