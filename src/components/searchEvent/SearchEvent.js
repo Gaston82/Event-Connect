@@ -1,5 +1,7 @@
 import React, {  useState } from 'react';
 import './SearchEvent.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee,faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const SearchEvent = ({ setKeyword }) => {
 
@@ -18,18 +20,20 @@ const SearchEvent = ({ setKeyword }) => {
         <form
         onSubmit = {handleSubmit}
         >
-            <input
-            type="text"
-            name="keyword"
-            value={inputValue}
-            onChange={handleChange}
-            placeholder="evento"
-            ></input>
-           <button
-            type="submit"
-             value="Submit">
-            GO!!
-           </button>
+            <fieldset>
+                <input
+                type="text"
+                name="keyword"
+                value={inputValue}
+                onChange={handleChange}
+                placeholder="Artista, evento o recinto"
+                ></input>
+                <button
+                type="submit"
+                value="Submit">
+                <FontAwesomeIcon icon={faSearch}/>
+                </button>
+            </fieldset>
         </form>
       );
 }

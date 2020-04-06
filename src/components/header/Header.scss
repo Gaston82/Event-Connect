@@ -1,7 +1,11 @@
 .header{
     display: flex;
+    flex-direction: column;
     background-color:gold;
-    height: 5em;
     margin: 0;
     padding: 10px;
+    h1{
+        margin-bottom: auto;
+        margin-left: 5px;
+    }
 }

@@ -3,6 +3,7 @@ import Header from "../header/Header";
 import axios from "axios";
 import Event from '../event/Event';
 import SearchEvent from "../searchEvent/SearchEvent";
+import './ListEvents.scss'
 
 const ListEvents = () => {
   const [eventList, setEventList] = useState([]);
@@ -32,6 +33,9 @@ const ListEvents = () => {
     const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
     const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES`;
     const response = await axios(url);
+    console.log(response);
+    
+
     setEventList(response.data._embedded.events);
   };
 
@@ -51,14 +55,16 @@ const ListEvents = () => {
         setKeyword={setKeyword}
         />
       </div>
-      {eventList.map((event) =>(
-          <Event 
-          key={event.id}
-          event={event}
-          />
-      ))}
-
+      <div className="contenedor-listEvents">
+          {eventList.map((event) =>(
+              <Event 
+              key={event.id}
+              event={event}
+              />
+          ))}
+      </div>
   )
+     
      </>
   )};
 
