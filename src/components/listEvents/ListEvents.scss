@@ -1,3 +1,7 @@
 .contenedor-listEvents{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+    max-width: 580px;
 }

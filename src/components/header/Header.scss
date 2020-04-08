@@ -1,11 +1,13 @@
 .header{
+    background-color: #082f4d;
     display: flex;
-    flex-direction: column;
-    background-color:gold;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     margin: 0;
     padding: 10px;
+    color: white;
     h1{
-        margin-bottom: auto;
-        margin-left: 5px;
+        font-size: 25px;
     }
+   
 }

@@ -3,6 +3,7 @@ import Header from "../header/Header";
 import axios from "axios";
 import Event from '../event/Event';
 import SearchEvent from "../searchEvent/SearchEvent";
+import User from "../user/User";
 import './ListEvents.scss'
 
 const ListEvents = () => {
@@ -50,18 +51,22 @@ const ListEvents = () => {
   return(
       <>
       <div className="header">
-        <Header />
-        <SearchEvent 
-        setKeyword={setKeyword}
-        />
+          <Header/> 
+          <User />
+          <SearchEvent 
+          setKeyword={setKeyword}
+          />
       </div>
       <div className="contenedor-listEvents">
-          {eventList.map((event) =>(
-              <Event 
-              key={event.id}
-              event={event}
-              />
-          ))}
+              {eventList.map((event) =>(
+          <div className="event-item">
+                  <Event 
+                  key={event.id}
+                  event={event}
+                  />
+                  </div>
+              ))}
+          
       </div>
   )
      
