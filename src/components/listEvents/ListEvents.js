@@ -24,7 +24,6 @@ const ListEvents = () => {
     const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
     const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES&keyword=${keyword}`;
     const response = await axios(url);
-    console.log(response);
     
     setEventList(response.data._embedded.events)
   }
@@ -34,7 +33,7 @@ const ListEvents = () => {
     const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
     const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES`;
     const response = await axios(url);
-    console.log(response);
+    console.log(response.data._embedded.events);
     
 
     setEventList(response.data._embedded.events);
