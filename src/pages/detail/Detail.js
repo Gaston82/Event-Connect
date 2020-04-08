@@ -9,7 +9,11 @@ import User from "../user/User";
 const Detail = (props) => {
   let { id } = useParams();
 
-  const [eventsDetails, setEventsDetails] = useState([]);
+  const [eventsDetails, setEventsDetails] = useState();
+
+  // Opcion 1: Pon la estructura de datos que vayas a usar en la template
+  //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
+
   // const [asistentes, setAsistentes] = useState([]);
 
   useEffect(() => {
@@ -32,6 +36,13 @@ const Detail = (props) => {
     getEventsDetails();
   }, [id]);
 
+  /* Opcion 2: Añade un loader mientras se carga la página, si intentas acceder a un elemento que aun no tienes te peta,
+    con esto evitas intentar renderizar algo hasta que esta disponible.
+  */
+  if (!eventsDetails) {
+    return (<p>Loading...</p>)
+  }
+
   return (
     <>
       <div className="header">
@@ -39,8 +50,8 @@ const Detail = (props) => {
         <User />
         <SearchEvent />
       </div>
-    <p>{JSON.stringify(eventsDetails.dates)}</p>
-    <p>{}</p>
+    <p>{eventsDetails.dates.start.localDate}</p>
+    <p>{eventsDetails.promoter.id}</p>
 
       <button type="submit">join</button>
     </>
