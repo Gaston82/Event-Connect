@@ -1,7 +1,7 @@
 import React, {  useState } from 'react';
 import './SearchEvent.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee,faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const SearchEvent = ({ setKeyword }) => {
 
@@ -37,5 +37,5 @@ const SearchEvent = ({ setKeyword }) => {
         </form>
       );
 }
- 
+
 export default SearchEvent;

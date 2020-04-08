@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Detail from './pages/detail/Detail'
 import Home from './pages/home/Home';
@@ -8,8 +7,7 @@ import User from './pages/user/User';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -23,7 +21,6 @@ function App() {
           </Switch>
         </div>
       </Router>
-    
   );
 }
 
