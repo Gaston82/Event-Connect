@@ -1,22 +1,21 @@
 import React,{ useEffect,useState } from 'react';
-import { registerUser } from '../logic/User';
+import { loginUser } from '../logic/User';
 
 
-const SignUp = () => {
+const Login = () => {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-    const [name,setName]=useState('');
     const [error,setError]=useState('');
 
     const handleFormSumit= async(event)=>{
       event.preventDefault();
       setError('');
 
-      if(!email || !password||!name){
+      if(!email || !password){
           setError('Email y Password obligatorios')
           return;
       }
-      const result = await registerUser(email,password,name);
+      const result = await loginUser(email,password);
       if(!result.succes){
           setError(result.message)
       }
@@ -24,14 +23,8 @@ const SignUp = () => {
 
     return (
         <>
-        <h1>Registro de Usuarios</h1>
+        <h1>Login de Usuarios</h1>
         <form onSubmit={handleFormSumit}>
-        <div>
-                <label htmlFor="name">Nombre</label>
-                <input type="name" id="name" value={name}
-                onChange={(event)=>setName(event.target.value)}
-                />
-            </div>
             <div>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" value={email}
@@ -53,4 +46,4 @@ const SignUp = () => {
     );
 }
  
-export default SignUp;
+export default Login;
