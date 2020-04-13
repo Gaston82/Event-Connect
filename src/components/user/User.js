@@ -7,7 +7,7 @@ import './User.scss'
 const User = () => {
     return ( 
         <div className="user-logo">
-          <Link to="/signup">
+         <Link to="/signup">
          <FontAwesomeIcon icon={faUser}/>
          </Link>
     

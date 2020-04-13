@@ -9,10 +9,12 @@ import Login from './pages/Login';
 import { useDispatch } from 'react-redux';
 import { setUser } from './redux/actions/userActions';
 import { registerUserObserver, getUserById } from './logic/User';
+//import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import {
   BrowserRouter as Router,
-  Switch,
+  Switch,Link, useHistory,
   Route
 } from "react-router-dom";
 import { firebaseConfig } from './config';
@@ -20,33 +22,35 @@ import { firebaseConfig } from './config';
 firebase.initializeApp(firebaseConfig);
 
 function App() {
+  const user = useSelector(state => state.user);
+  //const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     registerUserObserver(async(user)=>{
+     
+      
       if(user){
        const profile = await getUserById(user.uid);
        dispatch(setUser(profile));
        console.log("App -> profile", profile) 
       }else{
-        console.log("USUARIO HA HECHO LOGOUT")
+        dispatch(setUser(null))
       }
     })
   }, [])
 
   return (
       <Router>
-        <div>
           <Switch>
             <Route path="/login"component={Login}/>
             <Route path="/signup"component={SignUp}/>
             <Route path="/"exact component={Home}/>
-            <Route path="/user"exact component={User}/>
+            <Route path="/user" component={User}/>
             <Route path="/detail/:id" component={Detail}/>
           </Switch>
-        </div>
       </Router>
-  );
+  )
 }
 
 export default App;

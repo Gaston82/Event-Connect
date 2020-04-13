@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import axios from "axios";
 // import { getAssistent } from "../../services/data";
 import SearchEvent from "../../components/searchEvent/SearchEvent";
 import User from "../user/User";
+import { useSelector } from 'react-redux';
+import './Detail.scss';
+
 
 const Detail = (props) => {
   let { id } = useParams();
-
+  const user = useSelector(state => state.user);
+  const history = useHistory();
+  console.log("Detail --->userName ",user)
+  
   const [eventsDetails, setEventsDetails] = useState();
 
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
@@ -42,23 +48,28 @@ const Detail = (props) => {
   if (!eventsDetails) {
     return (<p>Loading...</p>)
   }
-
   return (
-    <>
-      <div className="header">
-        <Header />
-        <User />
-        <SearchEvent />
+    
+    <div className = "card-detail">
+      <div className = "card-detail-content">
+        <img  src={eventsDetails.images[0].url}></img>
+        <h2>{eventsDetails.name}</h2>
+        <p>Date: {eventsDetails.dates.start.localDate}</p>
+        <p>Time: {eventsDetails.dates.start.localTime}</p>
+        <p>Location: {eventsDetails._embedded.venues[0].name}</p>
+        <p>City: {eventsDetails._embedded.venues[0].city.name}</p>
       </div>
-    <p>{eventsDetails.dates.start.localDate}</p>
-    <p>{eventsDetails.promoter.id}</p>
-
-      <button type="submit">join</button>
-    </>
+      <button type="submit">I want to go</button>
+    </div>
   );
 };
 
 /*
 <img  src={eventsDetails.images.url}></img>
+  <div className="header">
+        <Header />
+        <User />
+        <SearchEvent />
+      </div>
 */
 export default Detail;

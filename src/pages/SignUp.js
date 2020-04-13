@@ -1,12 +1,15 @@
 import React,{ useEffect,useState } from 'react';
 import { registerUser } from '../logic/User';
-
+import { useHistory } from 'react-router-dom';
+import './SignUp.scss';
 
 const SignUp = () => {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [name,setName]=useState('');
     const [error,setError]=useState('');
+
+    const history = useHistory();
 
     const handleFormSumit= async(event)=>{
       event.preventDefault();
@@ -19,31 +22,28 @@ const SignUp = () => {
       const result = await registerUser(email,password,name);
       if(!result.succes){
           setError(result.message)
+      }else{
+          history.push('/')
       }
     }
 
     return (
         <>
-        <h1>Registro de Usuarios</h1>
-        <form onSubmit={handleFormSumit}>
-        <div>
+        
+        <form className="form-signup" onSubmit={handleFormSumit}>
+                <h1>Register</h1>
                 <label htmlFor="name">Nombre</label>
                 <input type="name" id="name" value={name}
                 onChange={(event)=>setName(event.target.value)}
                 />
-            </div>
-            <div>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" value={email}
                 onChange={(event)=>setEmail(event.target.value)}
                 />
-            </div>
-            <div>
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" value={password}
                 onChange={(event)=>setPassword(event.target.value)}
                 />
-            </div>
             <button
             type="submit"
             >Registrarme</button>

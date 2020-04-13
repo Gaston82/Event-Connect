@@ -1,0 +1,21 @@
+.card-detail{
+    max-width: 480px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+        height: 50%;
+        width: 400px;
+    }
+    button{
+        width: 80%;
+        height: 30px;
+        border-radius: 20px;
+        background-color: red;
+        border: none;
+        color: white;
+        font-size: 16px;
+    }
+}

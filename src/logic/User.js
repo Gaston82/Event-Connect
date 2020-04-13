@@ -1,4 +1,4 @@
-import { registro, login,registerAuthObserver } from '../services/auth.js';
+import { registro, login,registerAuthObserver,salir } from '../services/auth.js';
 import { createNewWithId, getById } from '../services/data';
 
 const ERROR_MESSAGES = {
@@ -13,6 +13,7 @@ const PROFILES_COLLECTION = 'profiles';
 
 export async function registerUser(email,password,name){
     const result = await registro(email,password);
+    
     if(result.succes){
         const profileResult = createNewWithId(PROFILES_COLLECTION, { email,name},result.id)
         return { succes: profileResult }
@@ -34,11 +35,15 @@ export async function loginUser(email,password){
     }
 }
 
-export async function registerUserObserver(callback){
+export  function registerUserObserver(callback){
     registerAuthObserver(callback)
 }
 
 export async function getUserById(id){
     const result = await getById(PROFILES_COLLECTION,id);
     return result;
+}
+export async function signout(){
+    const result = await salir();
+    return result.succes;
 }

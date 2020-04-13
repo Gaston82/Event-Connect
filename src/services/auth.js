@@ -24,7 +24,19 @@ export async function login(email,password){
     }
 }
 
-export async function registerAuthObserver(callback){
+export  function registerAuthObserver(callback){
 firebase.auth().onAuthStateChanged(callback);
+
+}
+
+export async function salir(){
+    try{
+        await firebase.auth().signout()
+        return {succes:true};    
+    }catch(error){
+        
+        return {succes:false, error: error.code};    
+        
+    }
 
 }
