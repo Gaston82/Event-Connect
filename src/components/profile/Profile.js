@@ -2,17 +2,16 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import './User.scss'
+import './Profile.scss'
 
-const User = () => {
+const Profile = () => {
     return ( 
         <div className="user-logo">
-         <Link to="/signup">
+         <Link to="/profile">
          <FontAwesomeIcon icon={faUser}/>
          </Link>
-    
         </div>
      );
 }
  
-export default User;
+export default Profile;

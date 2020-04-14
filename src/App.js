@@ -18,6 +18,7 @@ import {
   Route
 } from "react-router-dom";
 import { firebaseConfig } from './config';
+import Profile from './components/profile/Profile';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -43,10 +44,10 @@ function App() {
   return (
       <Router>
           <Switch>
-            <Route path="/login"component={Login}/>
+            <Route path="/" exact component={Login}/>
             <Route path="/signup"component={SignUp}/>
-            <Route path="/"exact component={Home}/>
-            <Route path="/user" component={User}/>
+            <Route path="/home" component={Home}/>
+            <Route path="/profile" component={Profile}/>
             <Route path="/detail/:id" component={Detail}/>
           </Switch>
       </Router>

@@ -43,5 +43,12 @@ body{
         padding: 0 0 20px;
         text-align: center;
         font-size: 22px;
+    }a{
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 20px;
+        color: darkgrey;
+    }a:hover{
+        color: #ffc107;
     }
 }

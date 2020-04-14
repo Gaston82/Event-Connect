@@ -23,7 +23,7 @@ const SignUp = () => {
       if(!result.succes){
           setError(result.message)
       }else{
-          history.push('/')
+          history.push('/home')
       }
     }
 

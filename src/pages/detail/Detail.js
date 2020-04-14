@@ -7,6 +7,7 @@ import SearchEvent from "../../components/searchEvent/SearchEvent";
 import User from "../user/User";
 import { useSelector } from 'react-redux';
 import './Detail.scss';
+import { getAssistent,addNewAssistent, createNewWithId, getById } from '../../services/data';
 
 
 const Detail = (props) => {
@@ -16,18 +17,29 @@ const Detail = (props) => {
   console.log("Detail --->userName ",user)
   
   const [eventsDetails, setEventsDetails] = useState();
+  const [asistentes, setAsistentes] = useState([]);
+  
+  const handleSubmit =(event)=>{
+    event.preventDefault();
+    createNewWithId('asistentes',{user},id);
+}
 
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
   //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
 
-  // const [asistentes, setAsistentes] = useState([]);
-
+ 
   useEffect(() => {
     const fetchAsistentes = async () => {
-      // const dbAsistentes = await getAssistent(id);
+    const dbAsistentes = await getById ('asistentes',id);
+    console.log("Asistentes al evento",dbAsistentes);
+    setAsistentes(dbAsistentes);
+  
     };
     fetchAsistentes();
   }, []);
+
+  
+  
 
   useEffect(() => {
     const getEventsDetails = async() => {
@@ -45,7 +57,7 @@ const Detail = (props) => {
   /* Opcion 2: Añade un loader mientras se carga la página, si intentas acceder a un elemento que aun no tienes te peta,
     con esto evitas intentar renderizar algo hasta que esta disponible.
   */
-  if (!eventsDetails) {
+  if (!eventsDetails || !user ) {
     return (<p>Loading...</p>)
   }
   return (
@@ -58,18 +70,11 @@ const Detail = (props) => {
         <p>Time: {eventsDetails.dates.start.localTime}</p>
         <p>Location: {eventsDetails._embedded.venues[0].name}</p>
         <p>City: {eventsDetails._embedded.venues[0].city.name}</p>
-      </div>
-      <button type="submit">I want to go</button>
+        
+        <button type="submit" onClick={handleSubmit}>I want to go</button>
+      </div><br/>
+      <div>Asistentes : </div>
     </div>
   );
 };
-
-/*
-<img  src={eventsDetails.images.url}></img>
-  <div className="header">
-        <Header />
-        <User />
-        <SearchEvent />
-      </div>
-*/
-export default Detail;
+export default Detail ;

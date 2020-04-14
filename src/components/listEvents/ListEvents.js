@@ -3,7 +3,7 @@ import Header from "../header/Header";
 import axios from "axios";
 import Event from '../event/Event';
 import SearchEvent from "../searchEvent/SearchEvent";
-import User from "../user/User";
+import Profile from "../profile/Profile";
 import './ListEvents.scss'
 
 const ListEvents = () => {
@@ -43,7 +43,7 @@ const ListEvents = () => {
     <>
     <div className="header">
       <Header/>
-      <User />
+      <Profile />
       <SearchEvent
       setKeyword={setKeyword}
       />

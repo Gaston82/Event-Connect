@@ -24,7 +24,7 @@ const Login = () => {
       if(!result.succes){
           setError(result.message)
       }else{
-        history.push('/');
+        history.push('/home');
       }
     }
 
@@ -43,10 +43,12 @@ const Login = () => {
                 onChange={(event)=>setPassword(event.target.value)}
                 placeholder="password"
                 />
-                <br></br>
-            <button
-            type="submit"
-            >Login</button>
+                <br/><br/>
+                <button
+                type="submit"
+                >Login</button><br/><br/>
+                <a href = "#">Lost your password?</a><br/>
+                <a href = "signup">Don't have an account?</a>
         </form>
         {error !=='' &&<span>{error}</span>}
         </>

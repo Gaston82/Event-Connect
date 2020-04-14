@@ -5,8 +5,6 @@ const ERROR_MESSAGES = {
     'auth/weak-password': 'La contraseña debe tener como mínimo 6 caracteres',
     'auth/email-already-in-use': 'Email ya utilizado',
     'auth/wrong-password': 'Usuario y/o contraseña incorrectos',
-
-
 }
 
 const PROFILES_COLLECTION = 'profiles';

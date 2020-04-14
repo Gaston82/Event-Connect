@@ -31,11 +31,11 @@ function parseDocument(doc) {
 // Mediante esta funcion tendremos acceso a nuestra base de datos(función de ejemplo)
 
 async function getAssistent(id){
-
+console.log("service data => id ", id)
     const db = firebase.firestore();
     const querySnapshot=await db.collection("asistentes").where("idEvent", "==", id).get();
         querySnapshot.forEach((doc) => {
-            console.log(doc.data());
+            console.log("data service",doc.id,doc.data());
         });
     };
 
@@ -47,7 +47,6 @@ async function getAssistent(id){
           return parseDocument(document);
         }
         return null;
-        
         
       }
 //Con esta funcion crearemos el perfil de usuario mediante el id automatico del registro
@@ -64,7 +63,14 @@ async function getAssistent(id){
        }
       }
 
-export  { getAssistent,getById,createNewWithId };
+      async function addNewAssistent({idEvent: id, user}){
+        const db = getDBConnection();
+        const result = await db.collection('citas').add({idEvent: id, user})
+        console.log("addNewAssistent => result",user);
+        
+      }
+
+export  { getAssistent,getById,createNewWithId, addNewAssistent };
 
 /*
 import * as firebase from 'firebase/app';
