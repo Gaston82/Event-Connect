@@ -3,8 +3,8 @@ import Header from "../header/Header";
 import axios from "axios";
 import Event from '../event/Event';
 import SearchEvent from "../searchEvent/SearchEvent";
-import Profile from "../profile/Profile";
 import './ListEvents.scss'
+import Footer from "../footer/Footer";
 
 const ListEvents = () => {
   const [eventList, setEventList] = useState([]);
@@ -41,20 +41,18 @@ const ListEvents = () => {
 
   return(
     <>
-    <div className="header">
       <Header/>
-      <Profile />
       <SearchEvent
       setKeyword={setKeyword}
       />
+     <div className="contenedor-listEvents">
+        {eventList.map((event) => (
+        <div className="event-item" key={event.id}>
+                <Event event={event}/>
+                </div>
+            ))}
     </div>
-    <div className="contenedor-listEvents">
-      {eventList.map((event) => (
-      <div className="event-item" key={event.id}>
-              <Event event={event}/>
-              </div>
-          ))}
-    </div>
+    <Footer />
     </>
   )};
 

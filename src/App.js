@@ -3,7 +3,6 @@ import * as firebase from "firebase/app";
 import './App.css';
 import Detail from './pages/detail/Detail'
 import Home from './pages/home/Home';
-import User from './pages/user/User';
 import SignUp from './pages/SignUp'
 import Login from './pages/Login';
 import { useDispatch } from 'react-redux';
@@ -14,7 +13,7 @@ import { useSelector } from 'react-redux';
 
 import {
   BrowserRouter as Router,
-  Switch,Link, useHistory,
+  Switch,
   Route
 } from "react-router-dom";
 import { firebaseConfig } from './config';

@@ -1,6 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
-import { firebaseConfig }from '../config.js'
+
 
     //firebase.initializeApp(firebaseConfig);
 
@@ -63,14 +63,45 @@ console.log("service data => id ", id)
        }
       }
 
+      async function removeAssistant(collection,user,id){
+        const db = getDBConnection();
+        try{
+            const result = await db.collection(collection).doc(id).update({
+              users: firebase.firestore.FieldValue.arrayRemove(user)
+          });
+           console.log("createNewWithId -> result ",result)
+         
+         }catch(error){
+           console.log(error);
+         return null;
+        }
+       }
+
+
+       async function createNewAsistente(collection,user,id){
+        const db = getDBConnection();
+        try{
+           const result = await db.collection(collection).doc(id).set({
+            users: firebase.firestore.FieldValue.arrayUnion(user)
+        },{merge:true});
+           console.log("createNewWithId -> result ",result)
+         
+         }catch(error){
+           console.log(error);
+         return null;
+        }
+       }
+
+/*
       async function addNewAssistent({idEvent: id, user}){
         const db = getDBConnection();
-        const result = await db.collection('citas').add({idEvent: id, user})
+        const result = await db.collection('asistentes').add({idEvent: id, user})
         console.log("addNewAssistent => result",user);
         
       }
+      */
 
-export  { getAssistent,getById,createNewWithId, addNewAssistent };
+export  { getAssistent,getById,createNewWithId,createNewAsistente,removeAssistant};
 
 /*
 import * as firebase from 'firebase/app';

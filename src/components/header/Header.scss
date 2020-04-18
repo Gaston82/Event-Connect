@@ -1,19 +1,16 @@
-.header{
+header{
     background-color: #082f4d;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
-    margin: 0;
     padding: 10px;
     color: white;
     h1{
         font-size: 25px;
     }
-    ul{
-        display: flex;
-    }
-    ul{
-
-    }
-   
+}
+.user-logo{
+    color: white;
+    width: 2%;
+    margin: 20px 0;
+    font-size: 20px;
 }
