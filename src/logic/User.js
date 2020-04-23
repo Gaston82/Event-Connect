@@ -9,11 +9,11 @@ const ERROR_MESSAGES = {
 
 const PROFILES_COLLECTION = 'profiles';
 
-export async function registerUser(email,password,name){
+export async function registerUser(email,password,name,myEvents){
     const result = await registro(email,password);
     
     if(result.succes){
-        const profileResult = createNewWithId(PROFILES_COLLECTION, { email,name},result.id)
+        const profileResult = createNewWithId(PROFILES_COLLECTION, { email,name,myEvents},result.id)
         return { succes: profileResult }
     }else{
         const message = ERROR_MESSAGES[result.error]?ERROR_MESSAGES[result.error]:"error inesperado"

@@ -1,32 +1,31 @@
 import React, { useState }from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory,useParams} from 'react-router-dom';
 import { registerUser } from '../../logic/User';
+import { useSelector } from 'react-redux';
 import './Profile.scss'
 
-const Profile = () => {
+const Profile = (params) => {
+    
+
+    let name = useParams();
+
 
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-    const [name,setName]=useState('');
+    const [casa,setName]=useState('paco');
     const [error,setError]=useState('');
-
-
+    
+    
+    const user = useSelector(state => state.user)
     const history = useHistory();
+    
+
+
 
     const handleFormSumit= async(event)=>{
       event.preventDefault();
       setError('');
 
-      if(!email || !password||!name){
-          setError('Email y Password obligatorios')
-          return;
-      }
-      const result = await registerUser(email,password,name);
-      if(!result.succes){
-          setError(result.message)
-      }else{
-          history.push('/home')
-      }
     }
 
    
@@ -57,3 +56,18 @@ const Profile = () => {
 
 
 export default Profile;
+
+
+
+    /*  if(!email || !password||!name){
+          setError('Email y Password obligatorios')
+          return;
+      }
+      const result = await registerUser(email,password,name);
+      if(!result.succes){
+          setError(result.message)
+      }else{
+          history.push('/home')
+      }
+    }
+*/

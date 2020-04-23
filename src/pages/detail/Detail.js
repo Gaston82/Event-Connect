@@ -4,7 +4,7 @@ import axios from "axios";
 // import { getAssistent } from "../../services/data";
 import { useSelector } from "react-redux";
 import "./Detail.scss";
-import { createNewAsistente, getById, removeAssistant } from "../../services/data";
+import { createNewAsistente, getById, removeAssistant, createNewWithId, addMyEvents,removeMyEvents } from "../../services/data";
 
 const Detail = (props) => {
   let { id } = useParams();
@@ -14,7 +14,7 @@ const Detail = (props) => {
 
   const [eventsDetails, setEventsDetails] = useState();
   const [asistentes, setAsistentes] = useState([]);
-
+  const [asistire,setAsistire] = useState(false);
  
 
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
@@ -23,12 +23,21 @@ const Detail = (props) => {
   const fetchAsistentes = async () => {
     const dbAsistentes = await getById("asistentes", id);
     console.log("Asistentes al evento", dbAsistentes);
-    setAsistentes(dbAsistentes);
+    if(dbAsistentes){
+      const dbAsistire = dbAsistentes.users.some((asistente)=>{
+        return asistente.id === user.id;
+    })
+    setAsistentes(dbAsistentes.users);
+    setAsistire(dbAsistire);
+  }
   };
 
   useEffect(() => {
-    fetchAsistentes();
-  }, []);
+    if(user){
+      fetchAsistentes();
+
+    }
+  }, [user]);
 
   useEffect(() => {
     const getEventsDetails = async () => {
@@ -39,29 +48,36 @@ const Detail = (props) => {
       setEventsDetails(response.data);
     };
 
-    getEventsDetails();
+   getEventsDetails();
   }, [id]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    createNewAsistente("asistentes", user, id);
-    fetchAsistentes();
-  };
+  
 
   const handleRemoveAssistant = (event) => {
     event.preventDefault();
     removeAssistant("asistentes", user, id);
+    removeMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url});
     fetchAsistentes();
   };
   
 
-  /* Opcion 2: Añade un loader mientras se carga la página, si intentas acceder a un elemento que aun no tienes te peta,
-    con esto evitas intentar renderizar algo hasta que esta disponible.
-  */
   if (!eventsDetails || !user) {
     return <p>Loading...</p>;
   }
 
+  const event = { eventId: eventsDetails.id,eventName:eventsDetails.name}
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createNewAsistente("asistentes", user, id);
+    addMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url})
+    fetchAsistentes();
+  
+  };
+ 
+
+  
   
   
   
@@ -72,29 +88,55 @@ const Detail = (props) => {
           <img alt="" src={eventsDetails.images[0].url}></img>
           <h4>{eventsDetails.name}</h4>
           <p>Date: {eventsDetails.dates.start.localDate}</p>
-          <p>⏰: {eventsDetails.dates.start.localTime}</p>
+          <p>⏰ {eventsDetails.dates.start.localTime}</p>
           <p> 🏟️ : {eventsDetails._embedded.venues[0].name}</p>
           <p>City: {eventsDetails._embedded.venues[0].city.name}</p>
         </div>
        <div>
-          <div> {!asistentes ? (
+          <div> {asistentes.length<=0 ? (
               <p>Aun no hay asistentes a este evento</p>
-            ):(<div>👨👩‍Asistentes : {asistentes.users.map((person)=>(
-              <span>{person.name},</span> 
+            ):(<div className = "collapsible">
+              <section id = "asistentes">
+              <a href = "#asistentes">👨👩‍<h3>{asistentes.length} asistentes</h3></a>
+                {asistentes.map((person)=>(
+              <p>{person.name}</p> 
             ))}
-            
+              </section>
             </div>)}
           </div>
-        </div><br/>
-        <button type="submit" onClick={handleSubmit}>
-          I want to go
-        </button><br/>
-        <button type="submit" onClick={handleRemoveAssistant}>
+       </div><br/>
+        {asistire ? (
+          <button type="submit" onClick={handleRemoveAssistant}>
           Remove assistant
         </button>
+        ):(
+        <button type="submit" onClick={handleSubmit}>
+          I want to go
+        </button>
+        )}
+        
+        
+       
       </div>
     </>
   );
 };
 export default Detail;
 
+/* <div>👨👩‍Asistentes : {asistentes.map((person)=>(
+              <p>{person.name}</p> 
+            ))}
+
+
+       <main class="collapsible">
+   <section id="asistentes">
+     <a href="#asistentes"><h1>view more...</h1></a>
+     <p>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, ipsum.
+     </p>
+   </section>
+ </main>
+
+
+
+             */

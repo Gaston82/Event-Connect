@@ -5,6 +5,7 @@ import Detail from './pages/detail/Detail'
 import Home from './pages/home/Home';
 import SignUp from './pages/SignUp'
 import Login from './pages/Login';
+import MyEvents from './pages/myevents/MyEvents'
 import { useDispatch } from 'react-redux';
 import { setUser } from './redux/actions/userActions';
 import { registerUserObserver, getUserById } from './logic/User';
@@ -48,6 +49,7 @@ function App() {
             <Route path="/home" component={Home}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/detail/:id" component={Detail}/>
+            <Route path="/myevents" component={MyEvents}/>
           </Switch>
       </Router>
   )

@@ -20,3 +20,27 @@
     }
     
 }
+
+.collapsible section p {
+    display: none;
+    text-align: center;
+
+    }
+  
+    .collapsible section a {
+      text-align: center;
+      color:white;
+      text-decoration: none;
+    }
+    
+  .collapsible section a:hover{
+    text-decoration: underline;
+    text-align: center;
+    color: white;
+  }
+  
+  .collapsible section:target p {
+    display: block;
+  
+    }
+  

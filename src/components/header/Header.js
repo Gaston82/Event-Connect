@@ -9,15 +9,12 @@ const Header = () => {
     const user = useSelector(state => state.user)
     const history = useHistory();
 
-    const handleProfile = ()=>{
-        history.push('/profile');
-    }
 
     return (
         <header>
             <h1>event connect</h1>
-            <Link className ="user-logo" >
-            <FontAwesomeIcon icon={faUser} onClick={handleProfile}/>
+            <Link to = {'/profile'} className ="user-logo" >
+            <FontAwesomeIcon icon={faUser} />
             </Link>
         </header>
      );

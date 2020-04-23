@@ -8,6 +8,7 @@ const SignUp = () => {
     const [password,setPassword]=useState('');
     const [name,setName]=useState('');
     const [error,setError]=useState('');
+    const [myEvents,setMyEvents] = useState([]);
 
     const history = useHistory();
 
@@ -19,7 +20,7 @@ const SignUp = () => {
           setError('Email y Password obligatorios')
           return;
       }
-      const result = await registerUser(email,password,name);
+      const result = await registerUser(email,password,name,myEvents);
       if(!result.succes){
           setError(result.message)
       }else{
