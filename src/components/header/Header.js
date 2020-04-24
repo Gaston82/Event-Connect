@@ -11,13 +11,13 @@ const Header = () => {
 
 
     return (
-        <header>
-            <h1>event connect</h1>
-            <Link to = {'/profile'} className ="user-logo" >
-            <FontAwesomeIcon icon={faUser} />
-            </Link>
+        <header class="container row">
+          <h1>event connect</h1>
+          <Link to = {'/profile'} className ="user-logo" >
+          <FontAwesomeIcon icon={faUser} />
+          </Link>
         </header>
      );
 }
- 
+
 export default Header;
