@@ -17,24 +17,23 @@ const SearchEvent = ({ setKeyword }) => {
     }
 
     return (
-        <form
-        onSubmit = {handleSubmit}
-        >
-            <fieldset>
-                <input
-                type="text"
-                name="keyword"
-                value={inputValue}
-                onChange={handleChange}
-                placeholder="Artista, evento o recinto"
-                ></input>
-                <button
-                type="submit"
-                value="Submit">
-                <FontAwesomeIcon icon={faSearch}/>
-                </button>
-            </fieldset>
-        </form>
+      <div className="container row">
+        <form onSubmit = {handleSubmit}>
+          <div className="input-group">
+            <input
+            className="search-input"
+            type="text"
+            name="keyword"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="Artista, evento o recinto"/>
+
+            <button className="submit-button" type="submit" value="Submit">
+              <FontAwesomeIcon icon={faSearch}/>
+            </button>
+          </div>
+          </form>
+        </div>
       );
 }
 
