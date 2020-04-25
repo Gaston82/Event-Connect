@@ -45,12 +45,14 @@ const ListEvents = () => {
       <SearchEvent
       setKeyword={setKeyword}
       />
-     <div className="contenedor-listEvents">
+     <div className="container row">
+       <div className="list-events">
         {eventList.map((event) => (
-        <div className="event-item" key={event.id}>
-                <Event event={event}/>
-                </div>
-            ))}
+          <div className="event-item" key={event.id}>
+          <Event event={event}/>
+          </div>
+        ))}
+       </div>
     </div>
     <Footer />
     </>

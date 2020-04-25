@@ -1,29 +1,20 @@
+.search-input {
+  border: 0;
+  border-radius: 100px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 60%;
+  transition: all .3s;
 
-form{
-    margin: 0 30 0 30;
-    width: 100%;
-    fieldset{
-        background:#fff;
-        padding: 0 0 0 40px;
-        border: 1px solid #fff;
-        border-radius: 5px;
-    }
-    input,button{
-        position: relative;
-        height: 40px;
-        width: 200px;
-        padding: 0;
-    }
-    input{
-        color: #666;
-        border: none;
-        width: 80%;
-    }
-    button{
-        font-size: 1.2rem;
-        width: 50px;
-        border: none;
-        background-color: #fff;
-        color:  #082f4d;
-    }
+  &:active,
+  &:focus {
+    outline: none;
+    width: 98%;
+  }
+}
+
+.submit-button {
+  border: 0;
+  margin-left: -40px;
 }
