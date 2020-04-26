@@ -1,7 +1,8 @@
 .list-events{
-  align-items: center;
   display: grid;
+  grid-gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  justify-content: center;
   justify-items: center;
   padding: 2rem 0;
 }
