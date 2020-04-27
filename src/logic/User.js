@@ -1,5 +1,5 @@
 import { registro, login,registerAuthObserver,salir } from '../services/auth.js';
-import { createNewWithId, getById } from '../services/data';
+import { createNewWithId, getById,updateElement} from '../services/data';
 
 const ERROR_MESSAGES = {
     'auth/weak-password': 'La contraseña debe tener como mínimo 6 caracteres',
@@ -41,7 +41,16 @@ export async function getUserById(id){
     const result = await getById(PROFILES_COLLECTION,id);
     return result;
 }
+
 export async function signout(){
     const result = await salir();
     return result.succes;
+}
+
+export async function editProfile(PROFILES_COLLECTION,id,{ age,city,name}){
+    
+    const result = await updateElement(PROFILES_COLLECTION,id,{age,city,name});
+    console.log(result);
+
+    return result;
 }

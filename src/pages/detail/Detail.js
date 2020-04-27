@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router";
 import axios from "axios";
-// import { getAssistent } from "../../services/data";
 import { useSelector } from "react-redux";
 import "./Detail.scss";
-import { createNewAsistente, getById, removeAssistant, createNewWithId, addMyEvents,removeMyEvents } from "../../services/data";
+import { createNewAsistente,addMyEvents,removeMyEvents,removeAssistant, getUserById } from '../../logic/EventLogic';
 
 const Detail = (props) => {
   let { id } = useParams();
@@ -21,7 +20,7 @@ const Detail = (props) => {
   //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
 
   const fetchAsistentes = async () => {
-    const dbAsistentes = await getById("asistentes", id);
+    const dbAsistentes = await getUserById("asistentes", id);
     console.log("Asistentes al evento", dbAsistentes);
     if(dbAsistentes){
       const dbAsistire = dbAsistentes.users.some((asistente)=>{
@@ -53,10 +52,12 @@ const Detail = (props) => {
 
   
 
-  const handleRemoveAssistant = (event) => {
+  const handleRemoveAssistant = async (event) => {
     event.preventDefault();
-    removeAssistant("asistentes", user, id);
-    removeMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url});
+    await removeAssistant("asistentes", user.id, id);
+  
+    
+    await removeMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url});
     fetchAsistentes();
   };
   
@@ -65,21 +66,16 @@ const Detail = (props) => {
     return <p>Loading...</p>;
   }
 
-  const event = { eventId: eventsDetails.id,eventName:eventsDetails.name}
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createNewAsistente("asistentes", user, id);
+    createNewAsistente("asistentes",user,id);
     addMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url})
     fetchAsistentes();
   
   };
  
 
-  
-  
-  
   
   return (
     <>
@@ -123,20 +119,3 @@ const Detail = (props) => {
 };
 export default Detail;
 
-/* <div>👨👩‍Asistentes : {asistentes.map((person)=>(
-              <p>{person.name}</p> 
-            ))}
-
-
-       <main class="collapsible">
-   <section id="asistentes">
-     <a href="#asistentes"><h1>view more...</h1></a>
-     <p>
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, ipsum.
-     </p>
-   </section>
- </main>
-
-
-
-             */

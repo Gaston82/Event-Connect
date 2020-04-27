@@ -41,6 +41,8 @@ function App() {
     })
   }, [])
 
+  //Me pide que ponga una dependencia o que borre el array vacio?
+
   return (
       <Router>
           <Switch>

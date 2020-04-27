@@ -21,6 +21,8 @@ const MyEvents = () => {
       fetchEvents();
     }
   }, [user]);
+
+  //Me pide que pase como dependencia fetchevents?
   
 if(!eventProfile){
   return <p>loading...</p>
@@ -28,9 +30,14 @@ if(!eventProfile){
 
   return(
   <p>{eventProfile.map((evento)=>(
-    <div>{evento.eventName}</div>
+    <>
+    <div>{evento.event.eventName}</div>
+    </>
   ))}</p>
   )
 };
 
 export default MyEvents;
+
+//Line para mostarr la foto
+ //<img alt="" src={evento.eventImg}></img>

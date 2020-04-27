@@ -1,55 +1,68 @@
 import React, { useState }from 'react';
-import {useHistory,useParams} from 'react-router-dom';
-import { registerUser } from '../../logic/User';
+import { editProfile } from '../../logic/User';
 import { useSelector } from 'react-redux';
 import './Profile.scss'
 
-const Profile = (params) => {
-    
 
-    let name = useParams();
+
+const Profile = () => {
+    
+    const user = useSelector(state => state.user)
+
+if(user){
+    console.log(" user en pagina profile",user);
+
+}
+
 
 
     const [email,setEmail]=useState('');
-    const [password,setPassword]=useState('');
-    const [casa,setName]=useState('paco');
-    const [error,setError]=useState('');
-    
-    
-    const user = useSelector(state => state.user)
-    const history = useHistory();
-    
+    const [city,setCity]=useState('');
+    const [name,setName]=useState('');
+    const [age,setAge]=useState('');
 
-
+    
 
     const handleFormSumit= async(event)=>{
       event.preventDefault();
-      setError('');
-
+     
+      editProfile("profiles",user.id,{ age: age ,city: city ,name: name})
+      console.log("profile edit");
     }
+    
 
    
     return (
         <> 
         <form className="form-signup" onSubmit={handleFormSumit}>
                 <h1>Profile</h1>
-                <label htmlFor="name">Nombre</label>
-                <input type="name" id="name" value={name}
-                onChange={(event)=>setName(event.target.value)}
-                />
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" value={email}
-                onChange={(event)=>setEmail(event.target.value)}
-                />
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" value={password}
-                onChange={(event)=>setPassword(event.target.value)}
-                />
+                {user ? (
+                    <>
+                    <label htmlFor="name">Nombre</label>
+                    <input type="name" id="name" value={user.name}
+                    onChange={(event)=>setName(event.target.value)} />
+
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" value={user.email}
+                    onChange={(event)=>setEmail(event.target.value)} />
+
+                    <label htmlFor="">City</label>
+                    <input type="text" id="city" value={user.city}
+                    onChange={(event)=>setCity(event.target.value)}/>
+
+                    <label htmlFor="">Age</label>
+                    <input type="number" id="age" value={age}
+                    onChange={(event)=>setAge(event.target.value)}/>
+                    
+                    </>
+                ):('')}
+                
+                
+               
             <button
             type="submit"
             >Add Changes</button>
         </form>
-        {error !=='' &&<span>{error}</span>}
         </>
      )
 }
@@ -58,7 +71,13 @@ const Profile = (params) => {
 export default Profile;
 
 
+        
+/*
+const [profile,setProfile] = useState({name:'',age:'',city:''})     
+{error !=='' &&<span>{error}</span>}
 
+
+*/
     /*  if(!email || !password||!name){
           setError('Email y Password obligatorios')
           return;

@@ -40,7 +40,8 @@ async function getAssistent(id) {
   });
 }
 
-async function getById(collection, id) {
+
+async function getById(collection,id) {
   const db = getDBConnection();
   const document = await db.collection(collection).doc(id).get();
   console.log("getbyid=>", collection, id);
@@ -59,11 +60,15 @@ async function createNewWithId(collection, newObj, id) {
     console.log("createnewwithid", result);
 
     return typeof result === "undefined";
-    return result.id;
+    //return result.id;
   } catch (error) {
     return null;
   }
 }
+
+
+
+//intento reemplazar esta por una funcion general
 
 async function removeAssistant(collection, user, id) {
   const db = getDBConnection();
@@ -81,6 +86,7 @@ async function removeAssistant(collection, user, id) {
   }
 }
 
+/*
 async function createNewAsistente(collection, user, id) {
   const db = getDBConnection();
   try {
@@ -99,23 +105,32 @@ async function createNewAsistente(collection, user, id) {
     return null;
   }
 }
+*/
 
-/*  async function addMyEvents(collection,event,id){
-        const db = getDBConnection();
-        try{
-           const result = await db.collection(collection).doc(id).set({
-            myEvents: firebase.firestore.FieldValue.arrayUnion(event)
-        },{merge:true});
-           console.log("createNewWithId -> result ",result)
-         
-         }catch(error){
-           console.log(error);
-         return null;
-        }
-       }*/
 
+async function mergeArrayElement(collection, newObj, id) {
+  const db = getDBConnection();
+  try {
+    const result = await db
+      .collection(collection)
+      .doc(id)
+      .set(
+        {
+          users: firebase.firestore.FieldValue.arrayUnion(newObj),
+        },
+        { merge: true }
+      );
+    console.log("createNewasistente -> result ", result);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+
+//Esta funcion es casi igul que la funcion mergeArray(como poner el nombre del array?)
+/*
 async function addMyEvents(collection, id, { eventId, eventName, eventImg }) {
-
 
   const db = getDBConnection();
   try {
@@ -123,7 +138,7 @@ async function addMyEvents(collection, id, { eventId, eventName, eventImg }) {
       .collection(collection)
       .doc(id)
       .update({
-        myEvents: firebase.firestore.FieldValue.arrayUnion({
+          myEvents: firebase.firestore.FieldValue.arrayUnion({
           eventName: eventName,
           eventId: eventId,
           eventImg: eventImg,
@@ -135,7 +150,28 @@ async function addMyEvents(collection, id, { eventId, eventName, eventImg }) {
     return null;
   }
 }
+*/
 
+async function addArrayEllement(collection,id,event){
+  const db = getDBConnection();
+  try {
+    const result = await db
+      .collection(collection)
+      .doc(id)
+      .update({
+          myEvents: firebase.firestore.FieldValue.arrayUnion({
+         event
+        }),
+      });
+    console.log("addmyevent -> data",result);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+
+}
+
+/*
 async function removeMyEvents(collection, id, { eventId, eventName, eventImg }) {
   const db = getDBConnection();
   try {
@@ -154,29 +190,77 @@ async function removeMyEvents(collection, id, { eventId, eventName, eventImg }) 
     return null;
   }
 }
+*/
 
 
-async function editProfile(collection, id) {
-  console.log();
-
+async function removeArrayElement(collection,id, event ) {
   const db = getDBConnection();
   try {
-    const result = await db.collection(collection).doc(id).update({});
+    const result = await db
+      .collection(collection)
+      .doc(id)
+      .update({
+        myEvents: firebase.firestore.FieldValue.arrayRemove({
+          event 
+        })
+      });
+    console.log("removearrayelement -> result ", result);
   } catch (error) {
     console.log(error);
     return null;
   }
 }
 
+
+async function removeArrayElement2(collection,user,id) {
+  const db = getDBConnection();
+  try {
+    const result = await db
+      .collection(collection)
+      .doc(id)
+      .update({
+        users: firebase.firestore.FieldValue.arrayRemove({
+          user 
+        })
+      });
+    console.log("removearrayelement -> result ", result);
+    console.log("removeArrayElement2",collection);
+    
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+
+
+async function updateElement(collection,id,updatedFields){
+  const db = getDBConnection();
+  try{
+    const result = await db.collection(collection).doc(id).update(updatedFields);
+    console.log("data updateelement",result);
+    return typeof result ==="undefined"
+  }catch(error){
+    return null;
+  }
+}
+
+
+
+
 export {
   getAssistent,
   getById,
   createNewWithId,
-  createNewAsistente,
+ // createNewAsistente,
+  mergeArrayElement,
   removeAssistant,
-  addMyEvents,
-  removeMyEvents,
-  editProfile,
+ // addMyEvents,
+  addArrayEllement,
+  //removeMyEvents,
+  removeArrayElement,
+  removeArrayElement2,
+  updateElement
 };
 
 /*

@@ -11,7 +11,7 @@ const Header = () => {
 
 
     return (
-        <header class="container row">
+        <header className="container row">
           <h1>event connect</h1>
           <Link to = {'/profile'} className ="user-logo" >
           <FontAwesomeIcon icon={faUser} />
