@@ -211,7 +211,7 @@ async function removeArrayElement(collection,id, event ) {
   }
 }
 
-
+/*
 async function removeArrayElement2(collection,user,id) {
   const db = getDBConnection();
   try {
@@ -220,11 +220,34 @@ async function removeArrayElement2(collection,user,id) {
       .doc(id)
       .update({
         users: firebase.firestore.FieldValue.arrayRemove({
-          user 
-        })
+          ...user 
+         } )
       });
     console.log("removearrayelement -> result ", result);
     console.log("removeArrayElement2",collection);
+    console.log("removeArrayElement2",{...user});
+    
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+*/
+
+async function removeArrayElement2(collection,user,id) {
+  const db = getDBConnection();
+  try {
+    const result = await db
+      .collection(collection)
+      .doc(id)
+      .update({
+        users: firebase.firestore.FieldValue.arrayRemove(
+           user 
+          )
+      });
+    console.log("removearrayelement -> result ", result);
+    console.log("removeArrayElement2",collection);
+    console.log("removeArrayElement2",{...user});
     
   } catch (error) {
     console.log(error);

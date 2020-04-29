@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams, useHistory,Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./Detail.scss";
@@ -54,9 +56,7 @@ const Detail = (props) => {
 
   const handleRemoveAssistant = async (event) => {
     event.preventDefault();
-    await removeAssistant("asistentes", user.id, id);
-  
-    
+    await removeAssistant("asistentes", user, id);
     await removeMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url});
     fetchAsistentes();
   };
@@ -79,6 +79,9 @@ const Detail = (props) => {
   
   return (
     <>
+      <Link to = {'/home'} className ="user-logo" >
+          <FontAwesomeIcon icon={faArrowLeft} />
+      </Link>
       <div className="card-detail">
         <div className="card-detail-content">
           <img alt="" src={eventsDetails.images[0].url}></img>

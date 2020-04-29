@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getById } from "../../services/data";
 import { useSelector } from "react-redux";
+import Footer from "../../components/footer/Footer";
 
 
 const MyEvents = () => {
@@ -29,11 +30,14 @@ if(!eventProfile){
 }
 
   return(
+    <>
   <p>{eventProfile.map((evento)=>(
     <>
     <div>{evento.event.eventName}</div>
     </>
   ))}</p>
+  <Footer />
+  </>
   )
 };
 
