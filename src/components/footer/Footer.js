@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
 <footer className="footer">
-  <Link  to="/home">
+   <Link  to="/home">
       <FontAwesomeIcon icon={faHome} className="logo-footer" />
    </Link>
    <Link  to="/profile">

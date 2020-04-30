@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import * as firebase from "firebase/app";
-import './App.css';
+//nimport './index.scss';
 import Detail from './pages/detail/Detail'
 import Home from './pages/home/Home';
 import SignUp from './pages/SignUp'

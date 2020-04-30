@@ -1,0 +1,43 @@
+
+body{
+    background-color:#071e3d;
+    font-family: sans-serif;
+    margin: 0px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-header{
+    text-align: center;
+    color: white;
+}
+.my-events__container{
+  display: flex;
+  flex-direction: column;
+  background-color: #1f3154; 
+  min-height: 100vh;
+  margin-bottom: 20px solid white;
+
+
+}
+.my-events__img{
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    padding: 10px;
+}
+.my-events__content{
+    border-bottom: solid 1px;
+   color: white;
+   padding: 10px;
+   display: flex;
+
+}
+footer{
+    background: #333;
+    height: 1em;
+    color: white;
+    padding: 3em;
+    margin-top: auto;
+}

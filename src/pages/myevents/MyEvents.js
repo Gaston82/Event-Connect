@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getById } from "../../services/data";
 import { useSelector } from "react-redux";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/footer/Footer"; 
+import './MyEvents.scss';
 
 
 const MyEvents = () => {
@@ -31,17 +32,41 @@ if(!eventProfile){
 
   return(
     <>
-  <p>{eventProfile.map((evento)=>(
-    <>
-    <div>{evento.event.eventName}</div>
+    <div className = "my-events__container">
+      {eventProfile.map((evento)=>(
+        <>
+        <div className = "my-events__content">
+        <img alt="" src={evento.event.eventImg} className="my-events__img" />
+          <h4>{evento.event.eventName}</h4>   
+        </div>
+        </>
+      ))}
+    </div>
+   <Footer />
     </>
-  ))}</p>
-  <Footer />
-  </>
+
+
+ 
+
   )
 };
 
 export default MyEvents;
 
 //Line para mostarr la foto
- //<img alt="" src={evento.eventImg}></img>
+ //
+
+ /*
+ 
+ <header class="list-header">
+        <h3>Concerts (75)</h3>
+    </header>
+    <div class="list-events">
+       <img src="../the_rolling_stones.jpg" alt="" class="list-events__img">
+       <div class="list-events__content">
+          <h4 class="list-events__desc">
+              Rolling Stones- Live Concert
+          </h4> 
+       </div>
+    </div>
+ */
