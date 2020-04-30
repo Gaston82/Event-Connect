@@ -47,9 +47,9 @@ export async function signout(){
     return result.succes;
 }
 
-export async function editProfile(PROFILES_COLLECTION,id,{ age,city,name}){
+export async function editProfile(PROFILES_COLLECTION,id,{ age,city,name,image}){
     
-    const result = await updateElement(PROFILES_COLLECTION,id,{age,city,name});
+    const result = await updateElement(PROFILES_COLLECTION,id,{age,city,name,image});
     console.log(result);
 
     return result;

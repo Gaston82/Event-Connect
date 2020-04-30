@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import * as firebase from "firebase/app";
+import 'firebase/storage';
 //nimport './index.scss';
 import Detail from './pages/detail/Detail'
 import Home from './pages/home/Home';
@@ -23,6 +24,7 @@ import Profile from './components/profile/Profile';
 firebase.initializeApp(firebaseConfig);
 
 function App() {
+  
   const user = useSelector(state => state.user);
   //const history = useHistory();
   const dispatch = useDispatch();

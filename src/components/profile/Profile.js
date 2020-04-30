@@ -2,6 +2,7 @@ import React, { useState }from 'react';
 import { editProfile } from '../../logic/User';
 import { useSelector } from 'react-redux';
 import './Profile.scss'
+import { uploadFile, UPLOAD_STATUS } from '../../services/storage';
 
 
 
@@ -20,14 +21,31 @@ if(user){
     const [city,setCity]=useState('');
     const [name,setName]=useState('');
     const [age,setAge]=useState('');
+    const [image,setImage] = useState('');
 
     
 
     const handleFormSumit= async(event)=>{
       event.preventDefault();
      
-      editProfile("profiles",user.id,{ age: age ,city: city ,name: name})
+      editProfile("profiles",user.id,{ age: age ,city: city ,name: name,image:image})
       console.log("profile edit");
+    }
+
+    const handleUploadFile = (event)=>{
+        const { files } = event.target;
+        const file = files.length > 0 ? files [0] : null;
+
+        if(file){
+            uploadFile('profiles',file, (result)=>{
+                if (result.status === UPLOAD_STATUS.FINISHED){
+                    setImage(result.url);
+                }
+                console.log("foto profiles",files);
+
+            })
+        }
+        
     }
     
 
@@ -38,6 +56,11 @@ if(user){
                 <h1>Profile</h1>
                 {user ? (
                     <>
+                    {image && <img src={image} alt="" className = "profile__img"/>}
+                    <label htmlFor="image">Image</label>
+                    <input type="image" id="image" type = 'file'
+                    onChange={handleUploadFile} />
+
                     <label htmlFor="name">Nombre</label>
                     <input type="name" id="name" value={user.name}
                     onChange={(event)=>setName(event.target.value)} />

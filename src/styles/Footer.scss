@@ -1,11 +1,17 @@
 
 
 .footer{
-    display: flex;
-    justify-content: space-evenly;
-    background-color: black;
+        background:black;
+        height: 1em;
+        color: white;
+        padding: 3em;
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        &__logo{
+            color: white;
+            font-size: 20px;
+        }
+        
 }
-.logo-footer{
-    color: white;
-    font-size: 20px;
-}
+    

@@ -32,12 +32,15 @@ if(!eventProfile){
 
   return(
     <>
-    <div className = "my-events__container">
+    <header className ="my-events__header">
+      <h3 className = "my-events__header__title">My Events({eventProfile.length})</h3>
+    </header>
+    <div className = "my-events__card">
       {eventProfile.map((evento)=>(
         <>
-        <div className = "my-events__content">
-        <img alt="" src={evento.event.eventImg} className="my-events__img" />
-          <h4>{evento.event.eventName}</h4>   
+        <div className = "my-events__card__content">
+        <img alt="" src={evento.event.eventImg} className="my-events__card__img" />
+          <p>{evento.event.eventName}</p>   
         </div>
         </>
       ))}

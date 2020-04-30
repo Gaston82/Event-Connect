@@ -8,36 +8,35 @@ body{
     flex-direction: column;
 }
 
-.list-header{
-    text-align: center;
+.my-events__header{
     color: white;
+
+    &__title{
+        text-align: center;
+        padding-left: 80px;
+
+    }
 }
-.my-events__container{
+
+.my-events__card{
   display: flex;
   flex-direction: column;
   background-color: #1f3154; 
   min-height: 100vh;
   margin-bottom: 20px solid white;
 
-
-}
-.my-events__img{
+  &__content{
+    border-bottom: solid 1px;
+    color: white;
+    padding: 10px;
+    display: flex;
+  }
+  &__img{
     width: 70px;
     height: 70px;
     border-radius: 15px;
     padding: 10px;
-}
-.my-events__content{
-    border-bottom: solid 1px;
-   color: white;
-   padding: 10px;
-   display: flex;
+  }
 
 }
-footer{
-    background: #333;
-    height: 1em;
-    color: white;
-    padding: 3em;
-    margin-top: auto;
-}
+

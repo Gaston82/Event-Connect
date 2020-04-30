@@ -11,13 +11,13 @@ const Footer = () => {
   return (
 <footer className="footer">
    <Link  to="/home">
-      <FontAwesomeIcon icon={faHome} className="logo-footer" />
+      <FontAwesomeIcon icon={faHome} className="footer__logo" />
    </Link>
    <Link  to="/profile">
-      <FontAwesomeIcon icon={faSearch} className="logo-footer" />
+      <FontAwesomeIcon icon={faSearch} className="footer__logo" />
     </Link>
     <Link to="/myevents">
-      <FontAwesomeIcon icon={faThumbsUp}  className="logo-footer"/>
+      <FontAwesomeIcon icon={faThumbsUp}  className="footer__logo"/>
     </Link>
 </footer>
   );

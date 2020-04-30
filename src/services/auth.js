@@ -1,5 +1,7 @@
 import * as firebase from "firebase";
 
+
+
 export async function registro(email,password){
     try{
         const result = await firebase.auth().createUserWithEmailAndPassword(email, password)
