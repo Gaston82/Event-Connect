@@ -16,6 +16,22 @@ const Detail = (props) => {
   const [eventsDetails, setEventsDetails] = useState();
   const [asistentes, setAsistentes] = useState([]);
   const [asistire,setAsistire] = useState(false);
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+  const monthName = '';
  
 
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
@@ -72,6 +88,8 @@ const Detail = (props) => {
     createNewAsistente("asistentes",user,id);
     addMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url})
     fetchAsistentes();
+    console.log(user.myEvents.length);
+    
   
   };
  
@@ -83,11 +101,14 @@ const Detail = (props) => {
           <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
       <div className="card-detail">
-        <div className="card-detail-content">
-          <img alt="" src={eventsDetails.images[0].url}></img>
-          <h4>{eventsDetails.name}</h4>
-          <p>Date: {eventsDetails.dates.start.localDate}</p>
-          <p>⏰ {eventsDetails.dates.start.localTime}</p>
+        <div className="card-detail__content">
+          <img alt="" src={eventsDetails.images[0].url} className = "card-detail__img"></img>
+          <h3>{eventsDetails.name}</h3>
+          <p>Day: {new Date(eventsDetails.dates.start.localDate).getDate()}</p>
+          <p>Day: {new Date(eventsDetails.dates.start.localDate).getFullYear()}</p>
+          
+          <p>Day: {eventsDetails.dates.start.localDate}</p>
+          <p>⏰ {eventsDetails.dates.start.localTime.substring(0,5)}</p>
           <p> 🏟️ : {eventsDetails._embedded.venues[0].name}</p>
           <p>City: {eventsDetails._embedded.venues[0].city.name}</p>
         </div>
@@ -95,10 +116,14 @@ const Detail = (props) => {
           <div> {asistentes.length<=0 ? (
               <p>Aun no hay asistentes a este evento</p>
             ):(<div className = "collapsible">
-              <section id = "asistentes">
-              <a href = "#asistentes">👨👩‍<h3>{asistentes.length} asistentes</h3></a>
+              <section className = "asistentes">
                 {asistentes.map((person)=>(
-              <p>{person.name}</p> 
+              <div className = "person">
+                <Link to={`/chat/${person.id}`}>
+                <img alt="" src={person.image} className ="person__img"/>      
+                </Link>  
+              </div> 
+              
             ))}
               </section>
             </div>)}
@@ -114,11 +139,36 @@ const Detail = (props) => {
         </button>
         )}
         
-        
-       
       </div>
     </>
   );
 };
 export default Detail;
+/*
+          <p>{monthName = months[eventsDetails.dates.start.localDate.getMonth()]}</p>
+          div> {asistentes.length<=0 ? (
+              <p>Aun no hay asistentes a este evento</p>
+            ):(<div className = "collapsible">
+              <section id = "asistentes">
+              <a href = "#asistentes">‍<h3>{asistentes.length} asistentes</h3></a>
+                {asistentes.map((person)=>(
+              <div className = "person">  
+                  <img alt="" src={person.image} className ="collapsible__img"/> 
+                  <p>{person.name}</p>
+              </div> 
+              
+            ))}
+              </section>
+            </div>)}
+          </div>
+       </div><br/>
 
+        <div className = "person">  
+                  <img alt="" src={person.image} className ="collapsible__img"/> 
+                  <p>{person.name}</p>
+              </div> 
+              
+            ))}
+
+
+*/

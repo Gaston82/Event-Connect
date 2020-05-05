@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 import { firebaseConfig } from './config';
 import Profile from './components/profile/Profile';
+import Chat from './components/chat/Chat';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -54,6 +55,7 @@ function App() {
             <Route path="/profile" component={Profile}/>
             <Route path="/detail/:id" component={Detail}/>
             <Route path="/myevents" component={MyEvents}/>
+            <Route path="/chat/:id" component={Chat}/>
           </Switch>
       </Router>
   )

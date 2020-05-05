@@ -268,6 +268,23 @@ async function updateElement(collection,id,updatedFields){
   }
 }
 
+function getRealTime(id,callback) {
+  const db = getDBConnection();
+  return db.collection('chat').doc(id).onSnapshot((doc)=>{
+   callback({id: doc.id,
+  ...doc.data()}) 
+  });
+
+}
+
+
+function parseQuerySnapshot(querySnapshot) {
+  const data = [];
+  querySnapshot.forEach((doc) => {
+    data.push(parseDocument(doc));
+  });
+  return data;
+}
 
 
 
@@ -283,7 +300,8 @@ export {
   //removeMyEvents,
   removeArrayElement,
   removeArrayElement2,
-  updateElement
+  updateElement,
+  getRealTime
 };
 
 /*

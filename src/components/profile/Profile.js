@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState,useEffect }from 'react';
 import { editProfile } from '../../logic/User';
 import { useSelector } from 'react-redux';
 import './Profile.scss'
@@ -15,20 +15,18 @@ if(user){
 
 }
 
+    const [userProfile,setUserProfile] = useState(user);
 
-
-    const [email,setEmail]=useState('');
-    const [city,setCity]=useState('');
-    const [name,setName]=useState('');
-    const [age,setAge]=useState('');
-    const [image,setImage] = useState('');
-
+    useEffect(() => {
+    setUserProfile(user);
+        
+    }, [user])
+    
     
 
     const handleFormSumit= async(event)=>{
       event.preventDefault();
-     
-      editProfile("profiles",user.id,{ age: age ,city: city ,name: name,image:image})
+      editProfile("profiles",user.id,userProfile)
       console.log("profile edit");
     }
 
@@ -39,7 +37,7 @@ if(user){
         if(file){
             uploadFile('profiles',file, (result)=>{
                 if (result.status === UPLOAD_STATUS.FINISHED){
-                    setImage(result.url);
+                    setUserProfile({...userProfile,image:result.url})
                 }
                 console.log("foto profiles",files);
 
@@ -47,35 +45,42 @@ if(user){
         }
         
     }
-    
+
+    const updateUserProfile = (name,value) =>{
+      const newUserProfile = {
+          ...userProfile,
+          [name]:value
+      }
+      setUserProfile(newUserProfile);
+    }
 
    
     return (
         <> 
         <form className="form-signup" onSubmit={handleFormSumit}>
                 <h1>Profile</h1>
-                {user ? (
+                {userProfile ? (
                     <>
-                    {image && <img src={image} alt="" className = "profile__img"/>}
+                    {userProfile.image && <img src={userProfile.image} alt="" className = "profile__img"/>}
                     <label htmlFor="image">Image</label>
                     <input type="image" id="image" type = 'file'
                     onChange={handleUploadFile} />
 
                     <label htmlFor="name">Nombre</label>
-                    <input type="name" id="name" value={user.name}
-                    onChange={(event)=>setName(event.target.value)} />
+                    <input type="name" id="name" value={userProfile.name}
+                    onChange={(event)=>updateUserProfile('name',event.target.value)} />
 
                     <label htmlFor="email">Email</label>
-                    <input type="email" id="email" value={user.email}
-                    onChange={(event)=>setEmail(event.target.value)} />
+                    <input type="email" id="email" value={userProfile.email}
+                    onChange={(event)=>updateUserProfile('email',event.target.value)} />
 
                     <label htmlFor="">City</label>
-                    <input type="text" id="city" value={user.city}
-                    onChange={(event)=>setCity(event.target.value)}/>
+                    <input type="text" id="city" value={userProfile.city}
+                    onChange={(event)=>updateUserProfile('city',event.target.value)}/>
 
                     <label htmlFor="">Age</label>
-                    <input type="number" id="age" value={age}
-                    onChange={(event)=>setAge(event.target.value)}/>
+                    <input type="text" id="age" value={userProfile.age}
+                    onChange={(event)=>updateUserProfile('age',event.target.value)}/>
                     
                     </>
                 ):('')}
