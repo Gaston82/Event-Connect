@@ -1,10 +1,17 @@
-.user-logo{
-    color: white;
-    width: 2%;
-    margin: 20px 0;
-    font-size: 20px;
+.header-profile{
+    display: flex;
+    justify-content: space-evenly;
+
+    &__logo{
+        color: white;
+        width: 2%;
+        margin: 30px -70px;
+        font-size: 20px;
+    }
 }
+
 .profile__img{
-    width: 100px;
-    border-radius: 50px;
+    width: 200px;
+    border-radius: 99px;
+    padding: 50px;
 }

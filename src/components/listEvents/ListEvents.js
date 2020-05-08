@@ -5,6 +5,7 @@ import Event from '../event/Event';
 import SearchEvent from "../searchEvent/SearchEvent";
 import './ListEvents.scss'
 import Footer from "../footer/Footer";
+import { getArtist } from '../../logic/EventLogic';
 
 const ListEvents = () => {
   const [eventList, setEventList] = useState([]);
@@ -16,12 +17,15 @@ const ListEvents = () => {
       const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
       const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES&keyword=${keyword}`;
       const response = await axios(url);
-
       setEventList(response.data._embedded.events)
     }
 
     getArtist(keyword);
   }, [keyword]);
+
+  
+
+ 
 
   // Esto se necesita? Cuando haces la llamada sin keyword o con la keyword siendo string vacia hace el mismo efecto
   // useEffect(() => {

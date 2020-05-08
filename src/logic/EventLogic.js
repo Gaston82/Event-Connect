@@ -15,15 +15,6 @@ export async function addMyEvents(
   const result = await addArrayEllement(collection, id, event);
 }
 
-export async function createNewAsistente(collection, user, id) {
-  const result = await mergeArrayElement(collection, user, id);
-}
-
-export async function removeAssistant(collection, user, id) {
-  const result = await removeArrayElement2(collection, user, id);
-}
-
-
 export async function removeMyEvents(
   collection,
   id,
@@ -32,6 +23,19 @@ export async function removeMyEvents(
   const result = await removeArrayElement(collection, id, event);
 }
 
+
+export async function createNewAsistente(collection, user, id) {
+
+  if(collection && user && id){
+    const result = await mergeArrayElement(collection, user, id);
+  }else{
+    return null;
+  }
+}
+
+export async function removeAssistant(collection, user, id) {
+  const result = await removeArrayElement2(collection, user, id);
+}
 
 
 export async function getUserById(collection, id) {

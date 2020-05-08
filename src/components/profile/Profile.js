@@ -3,6 +3,9 @@ import { editProfile } from '../../logic/User';
 import { useSelector } from 'react-redux';
 import './Profile.scss'
 import { uploadFile, UPLOAD_STATUS } from '../../services/storage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link }from 'react-router-dom';
 
 
 
@@ -57,12 +60,18 @@ if(user){
    
     return (
         <> 
+         <div className = "header-profile">
+                <Link to ={'/home'} className ="header-profile__logo" >
+                <FontAwesomeIcon icon={faArrowLeft} />
+                </Link>
+                <h1>{user.name.toUpperCase()}</h1>
+        </div>
         <form className="form-signup" onSubmit={handleFormSumit}>
-                <h1>Profile</h1>
+          
                 {userProfile ? (
                     <>
                     {userProfile.image && <img src={userProfile.image} alt="" className = "profile__img"/>}
-                    <label htmlFor="image">Image</label>
+                    <label htmlFor="image"></label>
                     <input type="image" id="image" type = 'file'
                     onChange={handleUploadFile} />
 

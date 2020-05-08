@@ -10,11 +10,18 @@ body{
 
 .my-events__header{
     color: white;
+    display: flex;
+    justify-content: space-evenly;
 
     &__title{
         text-align: center;
-        padding-left: 80px;
 
+    }
+    &__logo{
+      color: white;
+      font-size: 20px;
+      margin-top: 15px;
+      margin-left: -90px;
     }
 }
 
@@ -32,10 +39,11 @@ body{
     display: flex;
   }
   &__img{
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     border-radius: 15px;
     padding: 10px;
+    object-fit: cover;
   }
 
 }

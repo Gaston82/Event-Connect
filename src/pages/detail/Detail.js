@@ -17,22 +17,7 @@ const Detail = (props) => {
   const [asistentes, setAsistentes] = useState([]);
   const [asistire,setAsistire] = useState(false);
 
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
-  const monthName = '';
- 
+  
 
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
   //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
@@ -90,8 +75,26 @@ const Detail = (props) => {
     fetchAsistentes();
     console.log(user.myEvents.length);
     
-  
   };
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+  const monthIndex = new Date(eventsDetails.dates.start.localDate).getMonth()
+  const monthName = months[monthIndex].toUpperCase();
+  const day = new Date(eventsDetails.dates.start.localDate).getDate();
+  const year = new Date(eventsDetails.dates.start.localDate).getFullYear();
  
 
   
@@ -104,10 +107,11 @@ const Detail = (props) => {
         <div className="card-detail__content">
           <img alt="" src={eventsDetails.images[0].url} className = "card-detail__img"></img>
           <h3>{eventsDetails.name}</h3>
-          <p>Day: {new Date(eventsDetails.dates.start.localDate).getDate()}</p>
-          <p>Day: {new Date(eventsDetails.dates.start.localDate).getFullYear()}</p>
-          
-          <p>Day: {eventsDetails.dates.start.localDate}</p>
+          <div>
+            <p>{monthName.substring(0,3)}</p>
+            <p>0{day}</p>
+            <p>{year}</p>
+          </div>
           <p>⏰ {eventsDetails.dates.start.localTime.substring(0,5)}</p>
           <p> 🏟️ : {eventsDetails._embedded.venues[0].name}</p>
           <p>City: {eventsDetails._embedded.venues[0].city.name}</p>
@@ -169,6 +173,9 @@ export default Detail;
               </div> 
               
             ))}
+
+
+          <p>Day: {new Date(eventsDetails.dates.start.localDate).getFullYear()}</p>
 
 
 */
