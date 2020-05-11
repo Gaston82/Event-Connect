@@ -10,10 +10,6 @@ const EventCategory = ({ setCategory }) => {
     setImageValue(e.target.name);
     //setCategory(imageValue);
   };
-  /*
-  const handleFormSubmit = (e) => {
-    setCategory(imageValue);
-  };*/
 
   useEffect(() => {
     const fetchCategory = async () => {

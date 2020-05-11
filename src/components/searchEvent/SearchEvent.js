@@ -27,7 +27,6 @@ const SearchEvent = ({ setKeyword }) => {
             value={inputValue}
             onChange={handleChange}
             placeholder="Artista, evento o recinto"/>
-
             <button className="submit-button" type="submit" value="Submit">
               <FontAwesomeIcon icon={faSearch}/>
             </button>

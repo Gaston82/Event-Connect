@@ -2,8 +2,8 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { getUserById, registerUser, loginUser } from "./User";
 import { firebaseConfig } from "../config";
-import { registro } from "../services/auth";
-import { createNewWithId, login } from "../services/data";
+import { registro, login } from "../services/auth";
+import { createNewWithId } from "../services/data";
 
 firebase.initializeApp(firebaseConfig);
 //$ npm test -- --coverage --watchAll=false
@@ -53,18 +53,23 @@ describe("loginUser", () => {
   });
 */
 
+  test("should login a user", async () => {
+    const USER = {
+      email: "logintest@gmail.com",
+      password: "12345678",
+    };
+    const result = await loginUser(USER.email, USER.password);
+    expect(result.succes).toBe(true);
+  });
+});
+
+test("should return null  when a user is not register", async () => {
   const USER = {
-    email: "logintest@gmail.com",
+    email: "logintestFake@gmail.com",
     password: "12345678",
   };
-
-  test("should login a user", async () => {
-    await loginUser("logintest@gmail.com", "12345678");
-    const result = await login(email, password);
-    console.log("este es el password de user", user.email);
-    expect(result.email).toEqual(USER.email);
-    expect(result.password).toEqual(USER.password);
-  });
+  const result = await login(USER.email, USER.password);
+  expect(result.succes).toBe(false);
 });
 
 describe("registerUser", () => {

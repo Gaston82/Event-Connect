@@ -40,8 +40,7 @@ async function getAssistent(id) {
   });
 }
 
-
-async function getById(collection,id) {
+async function getById(collection, id) {
   const db = getDBConnection();
   const document = await db.collection(collection).doc(id).get();
   console.log("getbyid=>", collection, id);
@@ -65,8 +64,6 @@ async function createNewWithId(collection, newObj, id) {
     return null;
   }
 }
-
-
 
 //intento reemplazar esta por una funcion general
 
@@ -107,7 +104,6 @@ async function createNewAsistente(collection, user, id) {
 }
 */
 
-
 async function mergeArrayElement(collection, newObj, id) {
   const db = getDBConnection();
   try {
@@ -126,7 +122,6 @@ async function mergeArrayElement(collection, newObj, id) {
     return null;
   }
 }
-
 
 //Esta funcion es casi igul que la funcion mergeArray(como poner el nombre del array?)
 /*
@@ -152,23 +147,22 @@ async function addMyEvents(collection, id, { eventId, eventName, eventImg }) {
 }
 */
 
-async function addArrayEllement(collection,id,event){
+async function addArrayEllement(collection, id, event) {
   const db = getDBConnection();
   try {
     const result = await db
       .collection(collection)
       .doc(id)
       .update({
-          myEvents: firebase.firestore.FieldValue.arrayUnion({
-         event
+        myEvents: firebase.firestore.FieldValue.arrayUnion({
+          event,
         }),
       });
-    console.log("addmyevent -> data",result);
+    console.log("addmyevent -> data", result);
   } catch (error) {
     console.log(error);
     return null;
   }
-
 }
 
 /*
@@ -192,8 +186,7 @@ async function removeMyEvents(collection, id, { eventId, eventName, eventImg }) 
 }
 */
 
-
-async function removeArrayElement(collection,id, event ) {
+async function removeArrayElement(collection, id, event) {
   const db = getDBConnection();
   try {
     const result = await db
@@ -201,8 +194,8 @@ async function removeArrayElement(collection,id, event ) {
       .doc(id)
       .update({
         myEvents: firebase.firestore.FieldValue.arrayRemove({
-          event 
-        })
+          event,
+        }),
       });
     console.log("removearrayelement -> result ", result);
   } catch (error) {
@@ -234,49 +227,47 @@ async function removeArrayElement2(collection,user,id) {
 }
 */
 
-async function removeArrayElement2(collection,user,id) {
+async function removeArrayElement2(collection, user, id) {
   const db = getDBConnection();
   try {
     const result = await db
       .collection(collection)
       .doc(id)
       .update({
-        users: firebase.firestore.FieldValue.arrayRemove(
-           user 
-          )
+        users: firebase.firestore.FieldValue.arrayRemove(user),
       });
     console.log("removearrayelement -> result ", result);
-    console.log("removeArrayElement2",collection);
-    console.log("removeArrayElement2",{...user});
-    
+    console.log("removeArrayElement2", collection);
+    console.log("removeArrayElement2", { ...user });
   } catch (error) {
     console.log(error);
     return null;
   }
 }
 
-
-
-async function updateElement(collection,id,updatedFields){
+async function updateElement(collection, id, updatedFields) {
   const db = getDBConnection();
-  try{
-    const result = await db.collection(collection).doc(id).update(updatedFields);
-    console.log("data updateelement",result);
-    return typeof result ==="undefined"
-  }catch(error){
+  try {
+    const result = await db
+      .collection(collection)
+      .doc(id)
+      .update(updatedFields);
+    console.log("data updateelement", result);
+    return typeof result === "undefined";
+  } catch (error) {
     return null;
   }
 }
 
-function getRealTime(id,callback) {
+function getRealTime(id, callback) {
   const db = getDBConnection();
-  return db.collection('chat').doc(id).onSnapshot((doc)=>{
-   callback({id: doc.id,
-  ...doc.data()}) 
-  });
-
+  return db
+    .collection("chat")
+    .doc(id)
+    .onSnapshot((doc) => {
+      callback({ id: doc.id, ...doc.data() });
+    });
 }
-
 
 function parseQuerySnapshot(querySnapshot) {
   const data = [];
@@ -286,22 +277,20 @@ function parseQuerySnapshot(querySnapshot) {
   return data;
 }
 
-
-
 export {
   getAssistent,
   getById,
   createNewWithId,
- // createNewAsistente,
+  // createNewAsistente,
   mergeArrayElement,
   removeAssistant,
- // addMyEvents,
+  // addMyEvents,
   addArrayEllement,
   //removeMyEvents,
   removeArrayElement,
   removeArrayElement2,
   updateElement,
-  getRealTime
+  getRealTime,
 };
 
 /*

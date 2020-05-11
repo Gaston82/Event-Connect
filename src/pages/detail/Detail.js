@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +25,7 @@ const Detail = (props) => {
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
   //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
 
-  const fetchAsistentes = async () => {
+  const fetchAsistentes = useCallback(async () => {
     const dbAsistentes = await getUserById("asistentes", id);
     console.log("Asistentes al evento", dbAsistentes);
     if (dbAsistentes) {
@@ -35,13 +35,13 @@ const Detail = (props) => {
       setAsistentes(dbAsistentes.users);
       setAsistire(dbAsistire);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (user) {
       fetchAsistentes();
     }
-  }, [user]);
+  }, [user, fetchAsistentes]);
 
   useEffect(() => {
     const fetchArtistsDetails = async () => {

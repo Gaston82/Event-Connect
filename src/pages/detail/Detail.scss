@@ -13,7 +13,6 @@
 
   &__desc {
     display: flex;
-    justify-content: space-around;
     margin-bottom: 40px;
   }
 
@@ -22,13 +21,14 @@
     border: solid 1px;
     padding: 0px 8px;
     margin-top: 8px;
-    margin-left: 20px;
+    margin-left: 40px;
   }
 
   &__desc__right {
     display: block;
     text-align: left;
-    max-width: 250px;
+    max-width: 220px;
+    margin-left: 20px;
   }
 
   button {
