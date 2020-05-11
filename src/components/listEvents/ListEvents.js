@@ -1,65 +1,48 @@
 import React, { useState, useEffect } from "react";
 import Header from "../header/Header";
-import axios from "axios";
-import Event from '../event/Event';
+import Event from "../event/Event";
 import SearchEvent from "../searchEvent/SearchEvent";
-import './ListEvents.scss'
+import "./ListEvents.scss";
 import Footer from "../footer/Footer";
-import { getArtist } from '../../logic/EventLogic';
+import { getArtist, getEventsByCategory } from "../../logic/EventLogic";
+import EventCategory from "../eventCategory/EventCategory";
 
 const ListEvents = () => {
   const [eventList, setEventList] = useState([]);
-  const [keyword, setKeyword] = useState('');
-
+  const [keyword, setKeyword] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
-    const getArtist = async () => {
-      const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
-      const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES&keyword=${keyword}`;
-      const response = await axios(url);
-      setEventList(response.data._embedded.events)
-    }
+    const fetchArtist = async () => {
+      const artist = await getArtist(keyword);
+      setEventList(artist);
+    };
 
-    getArtist(keyword);
+    fetchArtist();
   }, [keyword]);
 
-  
-
- 
-
-  // Esto se necesita? Cuando haces la llamada sin keyword o con la keyword siendo string vacia hace el mismo efecto
-  // useEffect(() => {
-  //   const getEvents = async () => {
-  //     const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
-  //     const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apikey}&countryCode=ES`;
-  //     const response = await axios(url);
-  //     console.log(response.data._embedded.events);
-
-  //     setEventList(response.data._embedded.events);
-  //   };
-
-  //   getEvents();
-
-  // }, []);
-;
-
-  return(
+  return (
     <>
-      <Header/>
-      <SearchEvent
-      setKeyword={setKeyword}
-      />
-     <div className="container row">
-       <div className="list-events">
-        {eventList.map((event) => (
-          <div className="event-item" key={event.id}>
-          <Event event={event}/>
+      {category.length <= 0 ? (
+        <>
+          <Header />
+          <SearchEvent setKeyword={setKeyword} />
+          <div className="container row">
+            <div className="list-events">
+              {eventList.map((event) => (
+                <div className="event-item" key={event.id}>
+                  <Event event={event} />
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-       </div>
-    </div>
-    <Footer />
+          <Footer />
+        </>
+      ) : (
+        <EventCategory setCategory={setCategory} />
+      )}
     </>
-  )};
+  );
+};
 
 export default ListEvents;

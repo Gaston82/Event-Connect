@@ -1,0 +1,33 @@
+body,
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.home-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.box__text {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box img {
+    width: 100%;
+    display: block;
+}

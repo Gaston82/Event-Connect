@@ -1,14 +1,15 @@
-header{
-    background-color: #082f4d;
+header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
     color: white;
-    h1{
+
+    h1 {
         font-size: 25px;
     }
 }
-.user-logo{
+
+.user-logo {
     color: white;
     width: 2%;
     margin: 20px 0;
