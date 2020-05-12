@@ -15,7 +15,7 @@ const Detail = (props) => {
   const [eventsDetails, setEventsDetails] = useState();
   const [asistentes, setAsistentes] = useState([]);
   const [asistire,setAsistire] = useState(false);
- 
+
 
   // Opcion 1: Pon la estructura de datos que vayas a usar en la template
   //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
@@ -44,14 +44,14 @@ const Detail = (props) => {
       const apikey = `DxSOpYSZ4nVwPWsGOWdELH14DJA5EIYL`;
       const url = `https://app.ticketmaster.com/discovery/v2/events/${id}.json?apikey=${apikey}&countryCode=ES`;
       const response = await axios(url);
-      console.log(response.data);
+      console.log('responsedata', response.data);
       setEventsDetails(response.data);
     };
 
    getEventsDetails();
   }, [id]);
 
-  
+
 
   const handleRemoveAssistant = (event) => {
     event.preventDefault();
@@ -59,7 +59,7 @@ const Detail = (props) => {
     removeMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url});
     fetchAsistentes();
   };
-  
+
 
   if (!eventsDetails || !user) {
     return <p>Loading...</p>;
@@ -73,50 +73,50 @@ const Detail = (props) => {
     createNewAsistente("asistentes", user, id);
     addMyEvents("profiles",user.id,{ eventId: eventsDetails.id,eventName:eventsDetails.name, eventImg: eventsDetails.images[0].url})
     fetchAsistentes();
-  
-  };
- 
 
-  
-  
-  
-  
+  };
+
   return (
     <>
       <div className="card-detail">
         <div className="card-detail-content">
-          <img alt="" src={eventsDetails.images[0].url}></img>
+          <img alt="" src={eventsDetails.images[1].url}></img>
+        </div>
+
+        <div className="card-detail-description">
           <h4>{eventsDetails.name}</h4>
           <p>Date: {eventsDetails.dates.start.localDate}</p>
           <p>⏰ {eventsDetails.dates.start.localTime}</p>
           <p> 🏟️ : {eventsDetails._embedded.venues[0].name}</p>
           <p>City: {eventsDetails._embedded.venues[0].city.name}</p>
-        </div>
-       <div>
-          <div> {asistentes.length<=0 ? (
+
+            <div>
+            {asistentes.length <= 0 ?
+            (
               <p>Aun no hay asistentes a este evento</p>
-            ):(<div className = "collapsible">
-              <section id = "asistentes">
-              <a href = "#asistentes">👨👩‍<h3>{asistentes.length} asistentes</h3></a>
-                {asistentes.map((person)=>(
-              <p>{person.name}</p> 
-            ))}
-              </section>
-            </div>)}
+            ):
+            (
+              <div className="collapsible">
+                <section id="asistentes">
+                <a href = "#asistentes">👨👩‍<h3>{asistentes.length} {asistentes.length === 1 ? 'asistente' : 'asistentes'}</h3></a>
+                  {asistentes.map((person)=>(
+                <p key={Math.random()}>{person.name}</p>
+              ))}
+                </section>
+              </div>)}
+
+              <br/>
+          {asistire ? (
+            <button type="submit" onClick={handleRemoveAssistant}>
+            Remove assistant
+          </button>
+          ):(
+          <button type="submit" onClick={handleSubmit}>
+            I want to go
+          </button>
+          )}
           </div>
-       </div><br/>
-        {asistire ? (
-          <button type="submit" onClick={handleRemoveAssistant}>
-          Remove assistant
-        </button>
-        ):(
-        <button type="submit" onClick={handleSubmit}>
-          I want to go
-        </button>
-        )}
-        
-        
-       
+        </div>
       </div>
     </>
   );
@@ -124,7 +124,7 @@ const Detail = (props) => {
 export default Detail;
 
 /* <div>👨👩‍Asistentes : {asistentes.map((person)=>(
-              <p>{person.name}</p> 
+              <p>{person.name}</p>
             ))}
 
 

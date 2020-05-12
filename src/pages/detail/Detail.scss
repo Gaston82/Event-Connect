@@ -1,46 +1,58 @@
 .card-detail{
-    max-width: 480px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img{
-        height: 50%;
-        width: 400px;
-    }
-    button{
-        width: 80%;
-        height: 30px;
-        border-radius: 20px;
-        background-color: red;
-        border: none;
-        color: white;
-        font-size: 18px;
-    }
-    
+  background: white;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 42px;
+  align-items: center;
+  min-height: 100vh;
+
+  img {
+    max-width: 100%;
+  }
+
+  button{
+    width: 80%;
+
+    border-radius: 50px;
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 18px;
+    text-transform: uppercase;
+  }
 }
 
 .collapsible section p {
-    display: none;
-    text-align: center;
+  display: none;
+  text-align: center;
 
-    }
-  
-    .collapsible section a {
-      text-align: center;
-      color:white;
-      text-decoration: none;
-    }
-    
-  .collapsible section a:hover{
-    text-decoration: underline;
-    text-align: center;
-    color: white;
   }
-  
-  .collapsible section:target p {
-    display: block;
-  
-    }
-  
+
+  .collapsible section a {
+    text-align: center;
+    color: #30336b;
+    text-decoration: none;
+  }
+
+.collapsible section a:hover{
+  text-decoration: underline;
+  text-align: center;
+  color: #686de0;
+}
+
+.collapsible section:target p {
+  display: block;
+
+  }
+
+
+.card-detail-description {
+  width: 100%;
+  background: white;
+  color: #30336b;
+}
+
