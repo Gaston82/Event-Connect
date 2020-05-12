@@ -27,6 +27,7 @@ const Detail = (props) => {
     console.log("Asistentes al evento", dbAsistentes);
     if (dbAsistentes) {
       const dbAsistire = dbAsistentes.users.some((asistente) => {
+        console.log('asistente: ', asistente);
         return asistente.id === user.id;
       });
       setAsistentes(dbAsistentes.users);
@@ -109,7 +110,7 @@ const Detail = (props) => {
         <div className="card-detail__content">
           <img
             alt=""
-            src={eventsDetails.images[0].url}
+            src={eventsDetails.images[1].url}
             className="card-detail__img"
           ></img>
           <h3>{eventsDetails.name}</h3>
