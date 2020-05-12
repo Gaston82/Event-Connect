@@ -8,8 +8,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
-  //const [myEvents,setMyEvents] = useState([]);
-  //Preguntar como meter myEvents sin utilizar un useState
+
   const myEvents = [];
   const history = useHistory();
 

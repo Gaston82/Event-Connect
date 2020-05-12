@@ -22,9 +22,6 @@ const Detail = (props) => {
   const [asistentes, setAsistentes] = useState([]);
   const [asistire, setAsistire] = useState(false);
 
-  // Opcion 1: Pon la estructura de datos que vayas a usar en la template
-  //const [eventsDetails, setEventsDetails] = useState({ dates: { start: { localDate: ''}}});
-
   const fetchAsistentes = useCallback(async () => {
     const dbAsistentes = await getUserById("asistentes", id);
     console.log("Asistentes al evento", dbAsistentes);

@@ -26,7 +26,7 @@ const Chat = (props) => {
     const newChat = createNewChatWithId(
       "chat",
       {
-        msgText: "",
+        msgText: "Hola fito soy Al",
         receiverId: id,
         senderId: user.id,
         timestamp: "",
@@ -85,11 +85,3 @@ const Chat = (props) => {
 };
 
 export default Chat;
-
-/*
- useEffect(() => {
-        setMessage(user);
-            
-        }, [user])
-
-*/

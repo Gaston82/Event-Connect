@@ -8,7 +8,6 @@ const EventCategory = ({ setCategory }) => {
 
   const handleImg = (e) => {
     setImageValue(e.target.name);
-    //setCategory(imageValue);
   };
 
   useEffect(() => {
