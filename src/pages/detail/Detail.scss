@@ -1,14 +1,15 @@
 .card-detail {
-  max-width: 480px;
+  margin: 0 auto;
+  max-width: 720px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 18px 0;
 
   &__img {
-    height: 50%;
-    width: 400px;
+    max-width: 100%;
   }
 
   &__desc {
@@ -33,12 +34,13 @@
 
   button {
     width: 80%;
-    height: 30px;
-    border-radius: 20px;
+
+    border-radius: 45px;
     background-color: red;
     border: none;
     color: white;
     font-size: 18px;
+    padding: 15px;
   }
 
 }
@@ -49,22 +51,22 @@
     text-align: center;
 
     }
-  
+
     .collapsible section a {
       text-align: center;
       color:white;
       text-decoration: none;
     }
-    
+
   .collapsible section a:hover{
     text-decoration: underline;
     text-align: center;
     color: white;
   }
-  
+
   .collapsible section:target p {
     display: block;
-  
+
     }
     */
 
