@@ -98,10 +98,10 @@ const Detail = (props) => {
 
   return (
     <>
-      <Link to={"/home"} className="user-logo">
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </Link>
       <div className="card-detail">
+        <Link to={"/home"} className="card-detail__logo">
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Link>
         <div className="card-detail__content">
           <img
             alt=""
@@ -115,17 +115,21 @@ const Detail = (props) => {
               <p>{day}</p>
               <p>{year}</p>
             </div>
-            <div className="card-detail__desc__right">
-              <p>
-                {dayName} -{" "}
-                {eventsDetails.dates.start.localTime.substring(0, 5)}
-              </p>
-              <p>
-                {eventsDetails._embedded.venues[0].city.name} -{" "}
-                {eventsDetails._embedded.venues[0].name}{" "}
-              </p>
-              <p>{eventsDetails.name}</p>
-            </div>
+            {eventsDetails.dates.start.localTime ? (
+              <div className="card-detail__desc__right">
+                <p>
+                  {dayName} -{" "}
+                  {eventsDetails.dates.start.localTime.substring(0, 5)}
+                </p>
+                <p>
+                  {eventsDetails._embedded.venues[0].city.name} -{" "}
+                  {eventsDetails._embedded.venues[0].name}{" "}
+                </p>
+                <p>{eventsDetails.name}</p>
+              </div>
+            ) : (
+              <p className="card-detail__desc__warning">Time not avaible</p>
+            )}
           </div>
         </div>
         <div>
@@ -156,7 +160,7 @@ const Detail = (props) => {
         <br />
         {asistire ? (
           <button type="submit" onClick={handleRemoveAssistant}>
-            Remove assistant
+            I'm not going
           </button>
         ) : (
           <button type="submit" onClick={handleSubmit}>

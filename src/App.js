@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { firebaseConfig } from "./config";
 import Profile from "./components/profile/Profile";
 import Chat from "./components/chat/Chat";
+import Error from "./components/error/Error";
 import EventCategory from "./components/eventCategory/EventCategory";
 import Family from "./pages/Family";
 import Sports from "./pages/sports/Sports";
@@ -58,6 +59,7 @@ function App() {
         <Route path="/sports" component={Sports} />
         <Route path="/music" component={Music} />
         <Route path="/theater" component={Theater} />
+        <Route path="/error" component={Error} />
       </Switch>
     </Router>
   );

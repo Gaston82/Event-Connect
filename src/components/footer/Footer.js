@@ -5,6 +5,7 @@ import {
   faHome,
   faThumbsUp,
   faSearch,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/Footer.scss";
 
@@ -19,6 +20,9 @@ const Footer = () => {
       </Link>
       <Link to="/myevents">
         <FontAwesomeIcon icon={faThumbsUp} className="footer__logo" />
+      </Link>
+      <Link to="/chat">
+        <FontAwesomeIcon icon={faComments} className="footer__logo" />
       </Link>
     </footer>
   );

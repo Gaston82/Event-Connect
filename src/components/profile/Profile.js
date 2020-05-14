@@ -68,7 +68,7 @@ const Profile = () => {
             <label htmlFor="image"></label>
             <input id="image" type="file" alt="" onChange={handleUploadFile} />
 
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"

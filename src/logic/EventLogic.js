@@ -46,6 +46,7 @@ export async function getUserById(collection, id) {
 
 export async function getArtist(keyword) {
   const result = await fetchEvents(keyword);
+
   return result;
 }
 

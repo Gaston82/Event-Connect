@@ -1,17 +1,18 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #071e3d;
+    height: 1em;
+    color: white;
+    padding: 3em;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
 
-
-.footer{
-        background:black;
-        height: 1em;
+    &__logo {
         color: white;
-        padding: 3em;
-        margin-top: auto;
-        display: flex;
-        justify-content: space-between;
-        &__logo{
-            color: white;
-            font-size: 20px;
-        }
-        
+        font-size: 20px;
+    }
+
 }
-    

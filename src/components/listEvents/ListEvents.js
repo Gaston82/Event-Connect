@@ -4,6 +4,7 @@ import Event from "../event/Event";
 import SearchEvent from "../searchEvent/SearchEvent";
 import "./ListEvents.scss";
 import Footer from "../footer/Footer";
+import Error from "../error/Error";
 import { getArtist } from "../../logic/EventLogic";
 
 const ListEvents = () => {
@@ -13,6 +14,9 @@ const ListEvents = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       const artist = await getArtist(keyword);
+      if (artist == null) {
+        console.log("Artist not avaible");
+      }
       setEventList(artist);
     };
 
@@ -24,13 +28,17 @@ const ListEvents = () => {
       <Header />
       <SearchEvent setKeyword={setKeyword} />
       <div className="container row">
-        <div className="list-events">
-          {eventList.map((event) => (
-            <div className="event-item" key={event.id}>
-              <Event event={event} />
-            </div>
-          ))}
-        </div>
+        {eventList ? (
+          <div className="list-events">
+            {eventList.map((event) => (
+              <div className="event-item" key={event.id}>
+                <Event event={event} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Error />
+        )}
       </div>
       <Footer />
     </>

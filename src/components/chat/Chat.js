@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getRealTime } from "../../services/data";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 import {
   getIdCompare,
   getChatById,
@@ -13,9 +17,8 @@ import "./Chat.scss";
 
 const Chat = (props) => {
   const user = useSelector((state) => state.user);
-  console.log("user en chat", user);
 
-  let { id, name } = useParams();
+  let { id } = useParams();
 
   const [chat, setChat] = useState([]);
   const [input, setInput] = useState("");
@@ -37,7 +40,7 @@ const Chat = (props) => {
       }
     };
     checkChatRoom();
-  }, [user, id]);
+  }, [user, id, chatId]);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -48,7 +51,7 @@ const Chat = (props) => {
       });
     };
     fetchMessages();
-  }, []);
+  }, [chatId]);
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -67,6 +70,7 @@ const Chat = (props) => {
       },
     ];
     updateMsgText(chatId, newChat);
+    setInput("");
   };
   if (!chat) {
     return "Start now";
@@ -74,20 +78,19 @@ const Chat = (props) => {
 
   return (
     <>
+      <header className="my-events__header">
+        <Link to={"/home"} className="my-events__header__logo">
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Link>
+        <h3 className="my-events__header__title">Messages ({chat.length})</h3>
+      </header>
       <div className="chat-container">
-        <div className="msg-header">
-          <div className="msg-header__img">
-            <img src="" alt="" />
+        {chat.map((mensajes) => (
+          <div className="chat-card">
+            <img src={mensajes.img} alt=""></img>
+            <p>{mensajes.msg}</p>
           </div>
-          <div className="chat__desc">
-            {chat.map((mensajes) => (
-              <>
-                <p>{mensajes.msg}</p>
-                <img src={mensajes.img}></img>
-              </>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
       <form onSubmit={handleMessage} className="form-chat">
         <input

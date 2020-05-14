@@ -55,7 +55,6 @@ const Login = () => {
         <button type="submit">Login</button>
         <br />
         <br />
-        <p>Lost your password?</p>
         <br />
         <Link to={"/signup"} className="user-logo">
           <p>Don't have an account?</p>

@@ -1,17 +1,18 @@
-.header-profile{
+.header-profile {
     display: flex;
-    justify-content: space-evenly;
+    align-items: baseline;
 
-    &__logo{
+
+    &__logo {
         color: white;
-        width: 2%;
-        margin: 30px -70px;
-        font-size: 20px;
+        margin-right: 90px;
+        margin-left: 30px;
     }
 }
 
-.profile__img{
+.profile__img {
     width: 200px;
+    margin-top: 40px;
     border-radius: 99px;
     padding: 50px;
 }
