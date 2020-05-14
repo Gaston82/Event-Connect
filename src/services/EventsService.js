@@ -15,7 +15,6 @@ async function fetchEvents(keyword) {
 async function fetchEventsCategory(category) {
   try {
     const result = await axios(`${API_BASE}&classificationName=${category}`);
-    console.log(category);
     return result.data._embedded.events;
   } catch (err) {
     return null;

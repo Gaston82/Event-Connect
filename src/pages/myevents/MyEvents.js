@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getById } from "../../services/data";
 import { useSelector } from "react-redux";
 import Footer from "../../components/footer/Footer";
@@ -11,11 +11,10 @@ const MyEvents = () => {
   const [eventProfile, setEventProfile] = useState([]);
   const user = useSelector((state) => state.user);
 
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     const dbMyEvents = await getById("profiles", user.id);
     setEventProfile(dbMyEvents.myEvents);
-    console.log("myevents->", dbMyEvents);
-  };
+  }, []);
 
   useEffect(() => {
     if (user) {

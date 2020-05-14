@@ -1,6 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
-import { getUserById, registerUser, loginUser } from "./User";
+import { getUserById, registerUser, loginUser, editProfile } from "./User";
 import { firebaseConfig } from "../config";
 import { registro, login } from "../services/auth";
 import { createNewWithId } from "../services/data";
@@ -45,14 +45,6 @@ describe("getUserById", () => {
 
 describe("loginUser", () => {
   let email, password, name, myEvents;
-  /*
-  beforeEach(async () => {
-    email = `email-${Math.random()}@mail.com`;
-    password = `password-${Math.random()}`;
-    name = `name-${Math.random()}`;
-  });
-*/
-
   test("should login a user", async () => {
     const USER = {
       email: "logintest@gmail.com",
@@ -68,8 +60,40 @@ test("should return null  when a user is not register", async () => {
     email: "logintestFake@gmail.com",
     password: "12345678",
   };
-  const result = await login(USER.email, USER.password);
+  const result = await loginUser(USER.email, USER.password);
   expect(result.succes).toBe(false);
+});
+
+describe("editProfile", () => {
+  test("should edit  a field in user profile", async () => {
+    const USER = {
+      email: "logintestFake@gmail.com",
+      password: "12345678",
+      name: "logintest",
+    };
+
+    const result = await editProfile(
+      "profiles",
+      "2rgg9KlUmmXTBjRTKX32ejsStN33",
+      { name: "pepe" }
+    );
+    expect(result).toBe(true);
+  });
+
+  test("should return null if the field is incorrect", async () => {
+    const USER = {
+      email: "logintestFake@gmail.com",
+      password: "12345678",
+      name: "logintest",
+    };
+    const result = await editProfile(
+      "profiles",
+      "2rgg9KlUmmXTBjRTKX32ejsStN33",
+      { name: "pruebaEditName" }
+    );
+    const resultUser = await getUserById("2rgg9KlUmmXTBjRTKX32ejsStN33");
+    expect(resultUser.name).toEqual("pruebaEditName");
+  });
 });
 
 describe("registerUser", () => {
@@ -83,6 +107,8 @@ describe("registerUser", () => {
 
   test("should create a new user", async () => {
     const result = await registerUser(email, password, name, myEvents);
+    console.log("este es el resul del test ", result);
+    expect(result).toBeInstanceOf(Object);
 
     //Conectarse a DB para encontrar usuario nuevo
 

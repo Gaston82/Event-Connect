@@ -16,7 +16,6 @@ import {
 const Detail = (props) => {
   let { id } = useParams();
   const user = useSelector((state) => state.user);
-  console.log("Detail --->userName ", user);
 
   const [eventsDetails, setEventsDetails] = useState();
   const [asistentes, setAsistentes] = useState([]);
@@ -24,16 +23,14 @@ const Detail = (props) => {
 
   const fetchAsistentes = useCallback(async () => {
     const dbAsistentes = await getUserById("asistentes", id);
-    console.log("Asistentes al evento", dbAsistentes);
     if (dbAsistentes) {
       const dbAsistire = dbAsistentes.users.some((asistente) => {
-        console.log('asistente: ', asistente);
         return asistente.id === user.id;
       });
       setAsistentes(dbAsistentes.users);
       setAsistire(dbAsistire);
     }
-  }, []);
+  }, [user, id]);
 
   useEffect(() => {
     if (user) {
@@ -44,7 +41,6 @@ const Detail = (props) => {
   useEffect(() => {
     const fetchArtistsDetails = async () => {
       const response = await getEventsById(id);
-      console.log(id);
       setEventsDetails(response);
     };
 
@@ -75,7 +71,6 @@ const Detail = (props) => {
       eventImg: eventsDetails.images[0].url,
     });
     fetchAsistentes();
-    console.log(user.myEvents.length);
   };
 
   const months = [

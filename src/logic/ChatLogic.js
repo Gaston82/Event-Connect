@@ -1,4 +1,4 @@
-import { getById, createNewWithId } from "../services/data";
+import { getById, createNewWithId, updateElement } from "../services/data";
 
 const getIdCompare = (id1, id2) => {
   if (id1 > id2) {
@@ -16,6 +16,10 @@ export async function getChatById(collection, id) {
 export async function createNewChatWithId(collection, newObj, id) {
   const result = await createNewWithId(collection, newObj, id);
   return result;
+}
+
+export async function updateMsgText(id, msgText) {
+  await updateElement("chat", id, { msgText });
 }
 
 export { getIdCompare };

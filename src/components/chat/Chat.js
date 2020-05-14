@@ -6,67 +6,86 @@ import {
   getIdCompare,
   getChatById,
   createNewChatWithId,
+  updateMsgText,
 } from "../../logic/ChatLogic";
 
 import "./Chat.scss";
 
 const Chat = (props) => {
   const user = useSelector((state) => state.user);
+  console.log("user en chat", user);
+
   let { id, name } = useParams();
 
-  const [chat, setChat] = useState({ id: "", name: "", content: "" });
+  const [chat, setChat] = useState([]);
   const [input, setInput] = useState("");
-  const hora = new Date().getHours();
-  const minutes = new Date().getMinutes();
-  const seconds = new Date().getSeconds();
-  console.log(hora + minutes + seconds);
 
-  if (user) {
-    const result = getIdCompare(user.id, id);
-    const newChat = createNewChatWithId(
-      "chat",
-      {
-        msgText: "Hola fito soy Al",
-        receiverId: id,
-        senderId: user.id,
-        timestamp: "",
-      },
-      result
-    );
+  const chatId = getIdCompare(user.id, id);
 
-    //const resultChat = getChatById("chat", result);
-    //console.log("este es el resultado del chat", resultChat);
-  }
+  useEffect(() => {
+    const checkChatRoom = async () => {
+      const resultChat = await getChatById("chat", chatId);
+      if (resultChat == null) {
+        createNewChatWithId(
+          "chat",
+          {
+            msgText: [],
+            users: [user.id, id],
+          },
+          chatId
+        );
+      }
+    };
+    checkChatRoom();
+  }, [user, id]);
 
   useEffect(() => {
     const fetchMessages = async () => {
-      getRealTime(id, (dbMessages) => {
-        setChat(dbMessages);
+      getRealTime(chatId, (dbMessages) => {
+        console.log(dbMessages);
+
+        setChat(dbMessages.msgText);
       });
     };
     fetchMessages();
   }, []);
 
   const handleInput = (e) => {
-    setInput({
-      ...chat,
-      [e.target.name]: e.target.value,
-    });
+    setInput(e.target.value);
   };
 
   const handleMessage = (e) => {
     e.preventDefault();
+    const newChat = [
+      ...chat,
+      {
+        timestamt: +new Date(),
+        name: user.name,
+        img: user.image,
+        userId: user.id,
+        msg: input,
+      },
+    ];
+    updateMsgText(chatId, newChat);
   };
+  if (!chat) {
+    return "Start now";
+  }
 
   return (
     <>
       <div className="chat-container">
         <div className="msg-header">
           <div className="msg-header__img">
-            <img src="" />
+            <img src="" alt="" />
           </div>
           <div className="chat__desc">
-            <h4>{name}</h4>
+            {chat.map((mensajes) => (
+              <>
+                <p>{mensajes.msg}</p>
+                <img src={mensajes.img}></img>
+              </>
+            ))}
           </div>
         </div>
       </div>
@@ -74,7 +93,7 @@ const Chat = (props) => {
         <input
           type="text"
           name="content"
-          value={chat.content}
+          value={input}
           onChange={handleInput}
         ></input>
         <br></br>

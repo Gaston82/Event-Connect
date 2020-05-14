@@ -18,12 +18,16 @@ import { firebaseConfig } from "./config";
 import Profile from "./components/profile/Profile";
 import Chat from "./components/chat/Chat";
 import EventCategory from "./components/eventCategory/EventCategory";
+import Family from "./pages/Family";
+import Sports from "./pages/sports/Sports";
+import Music from "./pages/music/Music";
+import Theater from "./pages/theater/Theater";
 
 firebase.initializeApp(firebaseConfig);
 
 function App() {
   const user = useSelector((state) => state.user);
-  //const history = useHistory();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +35,6 @@ function App() {
       if (user) {
         const profile = await getUserById(user.uid);
         dispatch(setUser(profile));
-        console.log("App -> profile", profile);
       } else {
         dispatch(setUser(null));
       }
@@ -51,6 +54,10 @@ function App() {
         <Route path="/myevents" component={MyEvents} />
         <Route path="/chat/:id" component={Chat} />
         <Route path="/eventcategory" component={EventCategory} />
+        <Route path="/family" component={Family} />
+        <Route path="/sports" component={Sports} />
+        <Route path="/music" component={Music} />
+        <Route path="/theater" component={Theater} />
       </Switch>
     </Router>
   );

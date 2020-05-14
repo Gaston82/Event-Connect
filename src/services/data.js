@@ -32,7 +32,6 @@ async function getAssistent(id) {
 async function getById(collection, id) {
   const db = getDBConnection();
   const document = await db.collection(collection).doc(id).get();
-  console.log("getbyid=>", collection, id);
 
   if (document.exists) {
     return parseDocument(document);
@@ -44,7 +43,6 @@ async function createNewWithId(collection, newObj, id) {
   const db = getDBConnection();
   try {
     const result = await db.collection(collection).doc(id).set(newObj);
-    console.log("createnewwithid", result);
 
     return typeof result === "undefined";
   } catch (error) {
@@ -63,7 +61,6 @@ async function removeAssistant(collection, user, id) {
       });
     console.log("removeasisitente -> result ", result);
   } catch (error) {
-    console.log(error);
     return null;
   }
 }
@@ -82,7 +79,6 @@ async function mergeArrayElement(collection, newObj, id) {
       );
     console.log("createNewasistente -> result ", result);
   } catch (error) {
-    console.log(error);
     return null;
   }
 }
@@ -90,7 +86,7 @@ async function mergeArrayElement(collection, newObj, id) {
 async function addArrayEllement(collection, id, event) {
   const db = getDBConnection();
   try {
-    const result = await db
+    await db
       .collection(collection)
       .doc(id)
       .update({
@@ -98,7 +94,6 @@ async function addArrayEllement(collection, id, event) {
           event,
         }),
       });
-    console.log("addmyevent -> data", result);
   } catch (error) {
     console.log(error);
     return null;
@@ -163,14 +158,6 @@ function getRealTime(id, callback) {
     .onSnapshot((doc) => {
       callback({ id: doc.id, ...doc.data() });
     });
-}
-
-function parseQuerySnapshot(querySnapshot) {
-  const data = [];
-  querySnapshot.forEach((doc) => {
-    data.push(parseDocument(doc));
-  });
-  return data;
 }
 
 export {

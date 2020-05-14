@@ -70,7 +70,7 @@ const Profile = () => {
 
             <label htmlFor="name">Nombre</label>
             <input
-              type="name"
+              type="text"
               id="name"
               value={userProfile.name}
               onChange={(event) =>
