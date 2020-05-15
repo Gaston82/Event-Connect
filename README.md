@@ -1,15 +1,29 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Live Demo
+
+# [Event Connect](https://event-connect-c039d.web.app/)
+
 # Description
 
 Event Connect is an application which allows users to search for upcoming events in their local area and beyond, including concerts, plays, festivals and football games. Once a user finds an event they plan to attend, they can update their status as a means to share this information with other Event Connect users. There is also a chat function which enables users to talk to each other prior to attending the same event, encouraging users to make a connection through shared plans.
 
 ## Uses cases diagram
+![](event-connect-docs/use-cases1.jpg)
 
 
 ## Technical description
 
 ![](event-connect-docs/technical-images.PNG)
+
+## Design(screeshots)
+### Search by Category
+![](event-connect-docs/prueba-category.jpg)
+### My Event
+![](event-connect-docs/prueba-myevent.jpg)
+### Detail
+![](event-connect-docs/prueba-detail.jpg)
+
 
 ## Available Scripts
 
@@ -48,32 +62,10 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Author
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Gastón Artaza 
+[GitHub](https://github.com/Gaston82/Event-Connect)
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
