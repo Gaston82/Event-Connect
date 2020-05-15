@@ -15,8 +15,6 @@ export async function registro(email, password) {
 
 export async function login(email, password) {
   try {
-    console.log("auth email test", email);
-
     await firebase.auth().signInWithEmailAndPassword(email, password);
     return { succes: true };
   } catch (error) {

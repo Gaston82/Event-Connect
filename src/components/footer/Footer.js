@@ -21,9 +21,6 @@ const Footer = () => {
       <Link to="/myevents">
         <FontAwesomeIcon icon={faThumbsUp} className="footer__logo" />
       </Link>
-      <Link to="/chat">
-        <FontAwesomeIcon icon={faComments} className="footer__logo" />
-      </Link>
     </footer>
   );
 };
