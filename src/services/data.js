@@ -25,7 +25,6 @@ async function getAssistent(id) {
     .where("idEvent", "==", id)
     .get();
   querySnapshot.forEach((doc) => {
-    console.log("data get assistant", doc.id, doc.data());
   });
 }
 
@@ -59,7 +58,6 @@ async function removeAssistant(collection, user, id) {
       .update({
         users: firebase.firestore.FieldValue.arrayRemove(user),
       });
-    console.log("removeasisitente -> result ", result);
   } catch (error) {
     return null;
   }
@@ -77,7 +75,6 @@ async function mergeArrayElement(collection, newObj, id) {
         },
         { merge: true }
       );
-    console.log("createNewasistente -> result ", result);
   } catch (error) {
     return null;
   }
@@ -111,7 +108,6 @@ async function removeArrayElement(collection, id, event) {
           event,
         }),
       });
-    console.log("removearrayelement -> result ", result);
   } catch (error) {
     console.log(error);
     return null;
@@ -127,9 +123,6 @@ async function removeArrayElement2(collection, user, id) {
       .update({
         users: firebase.firestore.FieldValue.arrayRemove(user),
       });
-    console.log("removearrayelement -> result ", result);
-    console.log("removeArrayElement2", collection);
-    console.log("removeArrayElement2", { ...user });
   } catch (error) {
     console.log(error);
     return null;
@@ -143,7 +136,6 @@ async function updateElement(collection, id, updatedFields) {
       .collection(collection)
       .doc(id)
       .update(updatedFields);
-    console.log("data updateelement", result);
     return typeof result === "undefined";
   } catch (error) {
     return null;
