@@ -1,6 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#Live Demo
+# Live Demo
+
 [Event Connect](https://event-connect-c039d.web.app/)
 
 # Description
