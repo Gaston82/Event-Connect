@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#Live Demo
+[Event Connect](https://event-connect-c039d.web.app/)
+
 # Description
 
 Event Connect is an application which allows users to search for upcoming events in their local area and beyond, including concerts, plays, festivals and football games. Once a user finds an event they plan to attend, they can update their status as a means to share this information with other Event Connect users. There is also a chat function which enables users to talk to each other prior to attending the same event, encouraging users to make a connection through shared plans.
