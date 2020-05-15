@@ -22,7 +22,8 @@ Event Connect is an application which allows users to search for upcoming events
 
 # Author
 
-Gastón Artaza [GitHub] (https://github.com/Gaston82/Event-Connect)
+* Gastón Artaza 
+[GitHub](https://github.com/Gaston82/Event-Connect)
 
 ## Available Scripts
 
