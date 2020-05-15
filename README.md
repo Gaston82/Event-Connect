@@ -17,8 +17,11 @@ Event Connect is an application which allows users to search for upcoming events
 ![](event-connect-docs/technical-images.PNG)
 
 ## Design(screeshots)
-### Home Page
-![](event-connect-docs/prueba-myevent.jpg)
+### My Event
+![](event-connect-docs/prueba-myevent.jpg) 
+### Detail
+![](event-connect-docs/prueba-detail.jpg)
+
 
 # Author
 
