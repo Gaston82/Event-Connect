@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Live Demo
 
-[Event Connect](https://event-connect-c039d.web.app/)
+# [Event Connect](https://event-connect-c039d.web.app/)
 
 # Description
 
