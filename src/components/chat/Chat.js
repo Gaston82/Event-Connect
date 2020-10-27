@@ -17,6 +17,7 @@ import "./Chat.scss";
 
 const Chat = (props) => {
   const user = useSelector((state) => state.user);
+  console.log({ user });
 
   let { id } = useParams();
 
@@ -86,7 +87,7 @@ const Chat = (props) => {
       </header>
       <div className="chat-container">
         {chat.map((mensajes) => (
-          <div className="chat-card">
+          <div className="chat-card" key={mensajes.timestamt}>
             <img src={mensajes.img} alt=""></img>
             <p>{mensajes.msg}</p>
           </div>
@@ -96,6 +97,7 @@ const Chat = (props) => {
         <input
           type="text"
           name="content"
+          autoComplete="off"
           value={input}
           onChange={handleInput}
         ></input>

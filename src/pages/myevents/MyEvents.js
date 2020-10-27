@@ -10,17 +10,18 @@ import "./MyEvents.scss";
 const MyEvents = () => {
   const [eventProfile, setEventProfile] = useState([]);
   const user = useSelector((state) => state.user);
+  console.log("desde my events<<<<<<<<<<<", eventProfile);
 
   const fetchEvents = useCallback(async () => {
     const dbMyEvents = await getById("profiles", user.id);
     setEventProfile(dbMyEvents.myEvents);
-  }, []);
+  }, [user.id]);
 
   useEffect(() => {
     if (user) {
       fetchEvents();
     }
-  }, [user]);
+  }, [user, fetchEvents]);
 
   if (!eventProfile) {
     return <p>loading...</p>;
@@ -38,16 +39,14 @@ const MyEvents = () => {
       </header>
       <div className="my-events__card">
         {eventProfile.map((evento) => (
-          <>
-            <div className="my-events__card__content">
-              <img
-                alt=""
-                src={evento.event.eventImg}
-                className="my-events__card__img"
-              />
-              <p>{evento.event.eventName}</p>
-            </div>
-          </>
+          <div className="my-events__card__content" key={evento.event.eventId}>
+            <img
+              alt=""
+              src={evento.event.eventImg}
+              className="my-events__card__img"
+            />
+            <p>{evento.event.eventName}</p>
+          </div>
         ))}
       </div>
       <Footer />

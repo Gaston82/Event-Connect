@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getEventsByCategory } from "../logic/EventLogic";
 
 export const useFetch = (category) => {
@@ -19,7 +19,7 @@ export const useFetch = (category) => {
       });
     };
     fetchCategory();
-  }, []);
+  }, [category]);
 
   return state;
 };
