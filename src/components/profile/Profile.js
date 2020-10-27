@@ -23,7 +23,6 @@ const Profile = () => {
   const handleFormSumit = async (event) => {
     event.preventDefault();
     editProfile("profiles", user.id, userProfile);
-    console.log("profile edit");
   };
 
   const handleUploadFile = (event) => {
@@ -35,7 +34,6 @@ const Profile = () => {
         if (result.status === UPLOAD_STATUS.FINISHED) {
           setUserProfile({ ...userProfile, image: result.url });
         }
-        console.log("foto profiles", files);
       });
     }
   };
@@ -72,6 +70,7 @@ const Profile = () => {
             <input
               type="text"
               id="name"
+              autoComplete="off"
               value={userProfile.name}
               onChange={(event) =>
                 updateUserProfile("name", event.target.value)
