@@ -1,12 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Footer from "./Footer";
-var enzyme = require("enzyme");
-var Adapter = require("enzyme-adapter-react-16");
 
-enzyme.configure({ adapter: new Adapter() });
 it("first test", () => {
   const wrapper = shallow(<Footer />);
-  const button = wrapper.find("button");
-  expect(button).toBe({});
+  expect(wrapper.find("footer.footer").length).toEqual(1);
+});
+it("second test", () => {
+  const wrapper = shallow(<Footer />);
+  expect(wrapper.find("link.footer__logo").length).toEqual(0);
+});
+it("second test", () => {
+  const wrapper = shallow(<Footer />);
+  const link = wrapper.find("icon.footer__logo");
+  console.log(link);
 });

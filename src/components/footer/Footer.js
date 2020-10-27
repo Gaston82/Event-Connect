@@ -5,9 +5,8 @@ import {
   faHome,
   faThumbsUp,
   faSearch,
-  faComments,
 } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/Footer.scss";
+import "./Footer.scss";
 
 const Footer = () => {
   return (
