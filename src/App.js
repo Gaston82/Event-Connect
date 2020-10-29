@@ -27,9 +27,8 @@ import Theater from "./pages/theater/Theater";
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const user = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     registerUserObserver(async (user) => {
@@ -41,8 +40,6 @@ function App() {
       }
     });
   }, []);
-
-  //Me pide que ponga una dependencia o que borre el array vacio?
 
   return (
     <Router>
