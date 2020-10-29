@@ -78,7 +78,7 @@ const Chat = (props) => {
   }
 
   return (
-    <>
+    <div className="wrapper">
       <header className="my-events__header">
         <Link to={"/home"} className="my-events__header__logo">
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -104,7 +104,7 @@ const Chat = (props) => {
         <br></br>
         <button>send</button>
       </form>
-    </>
+    </div>
   );
 };
 
