@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import { loginUser } from "../logic/User";
 import { useHistory, Link } from "react-router-dom";
 import "./Login.scss";
+import { useForm } from "../hooks/useForm";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formValues, handleInputChange] = useForm({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formValues;
+
   const [error, setError] = useState("");
 
   const history = useHistory();
 
-  const handleFormSumit = async (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     setError("");
 
@@ -18,8 +24,9 @@ const Login = () => {
       setError("Email y Password obligatorios");
       return;
     }
+
     const result = await loginUser(email, password);
-    console.log(result);
+
     if (!result.succes) {
       setError(result.message);
     } else {
@@ -28,27 +35,29 @@ const Login = () => {
   };
 
   return (
-    <>
-      <form className="form-login" onSubmit={handleFormSumit}>
+    <div className="wrapper">
+      <form className="form-login" onSubmit={handleFormSubmit}>
         <h1>Login </h1>
         <label htmlFor="email">Email</label>
         <br></br>
         <input
-          type="email"
-          id="email"
+          type="text"
+          name="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Enter name"
+          onChange={handleInputChange}
+          placeholder="Enter email"
+          autoComplete="off"
         />
         <br></br>
         <label htmlFor="password">Password</label>
         <br></br>
         <input
           type="password"
-          id="password"
+          name="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={handleInputChange}
           placeholder="password"
+          autoComplete="off"
         />
         <br />
         <br />
@@ -61,7 +70,7 @@ const Login = () => {
         </Link>
       </form>
       {error !== "" && <span>{error}</span>}
-    </>
+    </div>
   );
 };
 

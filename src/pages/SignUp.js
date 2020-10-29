@@ -29,7 +29,7 @@ const SignUp = () => {
   };
 
   return (
-    <>
+    <div className="wrapper">
       <form className="form-signup" onSubmit={handleFormSumit}>
         <h1>Register</h1>
         <label htmlFor="name">Nombre</label>
@@ -38,6 +38,7 @@ const SignUp = () => {
           id="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
+          autoComplete="off"
         />
         <label htmlFor="email">Email</label>
         <input
@@ -45,6 +46,7 @@ const SignUp = () => {
           id="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          autoComplete="off"
         />
         <label htmlFor="password">Password</label>
         <input
@@ -56,7 +58,7 @@ const SignUp = () => {
         <button type="submit">Registrarme</button>
       </form>
       {error !== "" && <span>{error}</span>}
-    </>
+    </div>
   );
 };
 

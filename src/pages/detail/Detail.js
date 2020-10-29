@@ -97,7 +97,7 @@ const Detail = (props) => {
   const dayName = days[dayIndex];
 
   return (
-    <>
+    <div className="wrapper">
       <div className="card-detail">
         <Link to={"/home"} className="card-detail__logo">
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -168,7 +168,7 @@ const Detail = (props) => {
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 export default Detail;

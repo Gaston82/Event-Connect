@@ -1,5 +1,5 @@
+
 .list-events {
-  
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -17,4 +17,8 @@
   */
   
 
+}
+.wrapper{
+  max-width: 375px;
+  margin: 0 auto;
 }

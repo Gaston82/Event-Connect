@@ -1,36 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { getEventsByCategory } from "../../logic/EventLogic";
+import React from "react";
 import Event from "../../components/event/Event";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useFetch } from "../../hooks/useFetch";
 
 const Music = () => {
-  const [eventList, setEventList] = useState();
+  const { loading, data } = useFetch("music");
 
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const clasification = await getEventsByCategory("music");
-      setEventList(clasification);
-    };
-    fetchCategory();
-  }, []);
-
-  if (!eventList) {
-    return <p>Loading...</p>;
+  if (!data) {
+    return <p>{loading}</p>;
   }
+
   return (
     <>
       <header className="my-events__header">
         <Link to={"/eventcategory"} className="my-events__header__logo">
           <FontAwesomeIcon icon={faArrowLeft} />
         </Link>
-        <h3 className="my-events__header__title">Music ({eventList.length})</h3>
+        <h3 className="my-events__header__title">Sports ({data.length})</h3>
       </header>
+
       <div className="container row">
         <div className="list-events">
-          {eventList.map((event) => (
+          {data.map((event) => (
             <div className="event-item" key={event.id}>
               <Event event={event} />
             </div>

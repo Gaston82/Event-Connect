@@ -24,7 +24,7 @@ const ListEvents = () => {
   }, [keyword]);
 
   return (
-    <>
+    <div className="wrapper">
       <Header />
       <SearchEvent setKeyword={setKeyword} />
       <div className="container row">
@@ -41,7 +41,7 @@ const ListEvents = () => {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

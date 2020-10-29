@@ -1,14 +1,15 @@
 .footer {
     position: fixed;
     bottom: 0;
-    width: 82%;
+    //width: 82%;
+    width: 100%;
     background: #071e3d;
-    height: 1em;
+    height: 1.5rem;
     color: white;
     padding: 2em;
     margin-top: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     &__logo {
         color: white;

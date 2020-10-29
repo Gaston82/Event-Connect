@@ -10,7 +10,6 @@ import "./MyEvents.scss";
 const MyEvents = () => {
   const [eventProfile, setEventProfile] = useState([]);
   const user = useSelector((state) => state.user);
-  console.log("desde my events<<<<<<<<<<<", eventProfile);
 
   const fetchEvents = useCallback(async () => {
     const dbMyEvents = await getById("profiles", user.id);
@@ -28,7 +27,7 @@ const MyEvents = () => {
   }
 
   return (
-    <>
+    <div className="wrapper">
       <header className="my-events__header">
         <Link to={"/home"} className="my-events__header__logo">
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -50,7 +49,7 @@ const MyEvents = () => {
         ))}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

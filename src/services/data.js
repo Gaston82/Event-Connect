@@ -24,8 +24,7 @@ async function getAssistent(id) {
     .collection("asistentes")
     .where("idEvent", "==", id)
     .get();
-  querySnapshot.forEach((doc) => {
-  });
+  querySnapshot.forEach((doc) => {});
 }
 
 async function getById(collection, id) {
@@ -52,7 +51,7 @@ async function createNewWithId(collection, newObj, id) {
 async function removeAssistant(collection, user, id) {
   const db = getDBConnection();
   try {
-    const result = await db
+    await db
       .collection(collection)
       .doc(id)
       .update({
@@ -66,7 +65,7 @@ async function removeAssistant(collection, user, id) {
 async function mergeArrayElement(collection, newObj, id) {
   const db = getDBConnection();
   try {
-    const result = await db
+    await db
       .collection(collection)
       .doc(id)
       .set(
@@ -100,7 +99,7 @@ async function addArrayEllement(collection, id, event) {
 async function removeArrayElement(collection, id, event) {
   const db = getDBConnection();
   try {
-    const result = await db
+    await db
       .collection(collection)
       .doc(id)
       .update({
@@ -117,7 +116,7 @@ async function removeArrayElement(collection, id, event) {
 async function removeArrayElement2(collection, user, id) {
   const db = getDBConnection();
   try {
-    const result = await db
+    await db
       .collection(collection)
       .doc(id)
       .update({
