@@ -46,8 +46,6 @@ const Chat = (props) => {
   useEffect(() => {
     const fetchMessages = async () => {
       getRealTime(chatId, (dbMessages) => {
-        console.log(dbMessages);
-
         setChat(dbMessages.msgText);
       });
     };
